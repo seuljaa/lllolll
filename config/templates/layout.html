@@ -1,0 +1,104 @@
+<!doctype html>
+{% load static %}
+{% load humanize %}
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>lllolll</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'common.css' %}">
+    <script defer src="{% static 'common.js' %}"></script>
+</head>
+<body class="t-flex t-flex-col t-min-h-screen t-pt-[56px]">
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} t-my-[0px]">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'main' %}"><i class="fab fa-pied-piper-hat"></i> lllolll</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'products:list' %}"><i class="fas fa-tshirt"></i> 상품리스트</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cart:cart_list' %}"><i class="fas fa-shopping-cart"></i> 장바구니</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt"></i> {{user.username}}님 로그아웃</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'accounts:signin' %}?next={{request.path}}"><i
+                                class="fas fa-sign-in-alt"></i> 로그인</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'accounts:signup' %}"><i class="fas fa-user-plus"></i> 회원가입</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <form class="d-flex" id="searchForm" method="get" action="{% url 'products:list' %}">
+                    <input type="hidden" id="search_keyword" name="search_keyword" value="{{ search_keyword|default_if_none:'' }}">
+                    <input type="hidden" id="page" name="page" value="{{ page }}">
+                    <input class="form-control me-2" type="search" name="search_keyword" placeholder="상품명을 입력해주세요." aria-label="Search" value="{{request.GET.search_keyword}}">
+                    <button class="btn btn-outline-success t-whitespace-nowrap" type="submit">검색</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="t-flex-1 t-py-[20px] t-flex t-flex-col">
+    {%block content%}
+    {%endblock%}
+{% block script %}
+<script type='text/javascript'>
+$(document).ready(function(){
+    $(".page-link").on('click', function() {
+        $("#page").val($(this).data("page"));
+        $("#searchForm").submit();
+    });
+
+    $("#btn_search").on('click', function() {
+        $("#search_keyword").val($(".search_keyword").val());
+        $("#page").val(1);  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
+        $("#searchForm").submit();
+    });
+});
+</script>
+{% endblock %}
+
+
+</section>
+
+<footer class="footer py-3 bg-light">
+    <div class="container t-text-center">
+        <span class="text-muted"><i class="fab fa-pied-piper-hat"></i> lllolll</span>
+    </div>
+</footer>
+
+</body>
+</html>
