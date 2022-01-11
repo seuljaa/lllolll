@@ -19,6 +19,6 @@ from deal import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.deal_list, name='main'),
+    path('', views.main, name='main'),
     path('deal/', include('deal.urls')),
 ]

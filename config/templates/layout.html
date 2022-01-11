@@ -41,26 +41,26 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'products:list' %}"><i class="fas fa-tshirt"></i> 상품리스트</a>
+                        <a class="nav-link" href="{% url 'deal:deal_list' %}"><i class="fas fa-tshirt"></i> 상품리스트</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="{% url 'cart:cart_list' %}"><i class="fas fa-shopping-cart"></i> 장바구니</a>
+                        <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> 장바구니</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt"></i> {{user.username}}님 로그아웃</a>
+                        <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:signin' %}?next={{request.path}}"><i
+                        <a class="nav-link" href="#"><i
                                 class="fas fa-sign-in-alt"></i> 로그인</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:signup' %}"><i class="fas fa-user-plus"></i> 회원가입</a>
+                        <a class="nav-link" href="#"><i class="fas fa-user-plus"></i> 회원가입</a>
                     </li>
                     {% endif %}
                 </ul>
-                <form class="d-flex" id="searchForm" method="get" action="{% url 'products:list' %}">
+                <form class="d-flex" id="searchForm" method="get" action="{% url 'deal:deal_list' %}">
                     <input type="hidden" id="search_keyword" name="search_keyword" value="{{ search_keyword|default_if_none:'' }}">
                     <input type="hidden" id="page" name="page" value="{{ page }}">
                     <input class="form-control me-2" type="search" name="search_keyword" placeholder="상품명을 입력해주세요." aria-label="Search" value="{{request.GET.search_keyword}}">
