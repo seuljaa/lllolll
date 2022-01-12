@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from deal import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main, name='main'),
     path('deal/', include('deal.urls')),
+    path('summernote/', include('django_summernote.urls')),
 ]
