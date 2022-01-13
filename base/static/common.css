@@ -3,12 +3,24 @@
   margin-bottom: 0px;
 }
 
+.t-mt-\[30px\] {
+  margin-top: 30px;
+}
+
 .t-flex {
   display: flex;
 }
 
 .t-min-h-screen {
   min-height: 100vh;
+}
+
+.t-w-10 {
+  width: 2.5rem;
+}
+
+.t-w-40 {
+  width: 10rem;
 }
 
 .t-flex-1 {
@@ -50,6 +62,11 @@
 
 .t-font-bold {
   font-weight: 700;
+}
+
+.t-text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
 @font-face {
