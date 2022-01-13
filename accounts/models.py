@@ -29,8 +29,24 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
 # Default : id / password / last_login
+    SERVER_CHOICES = (
+        ('scania', '스카니아'),
+        ('bera', '베라'),
+        ('luna', '루나'),
+        ('zenith', '제니스'),
+        ('croa', '크로아'),
+        ('union', '유니온'),
+        ('elysium', '엘리시움'),
+        ('enosis', '이노시스'),
+        ('red', '레드'),
+        ('aurora', '오로라'),
+        ('arcane', '아케인'),
+        ('nova', '노바'),
+    )
+
     email = models.EmailField(max_length=100, null=False)
     username = models.CharField(max_length=20, unique=True)
+    server = models.CharField(max_length=9, choices=SERVER_CHOICES)
     is_staff = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)

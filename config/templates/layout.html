@@ -41,22 +41,19 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'main' %}"><i class="fas fa-tshirt"></i> 상품리스트</a>
-                    </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> 장바구니</a>
+                        <a class="nav-link" href="#"><i class="fas fa-tshirt"></i> 상품리스트</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
+                        <a class="nav-link" href="{% url 'accounts:sign_out' %}"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i
+                        <a class="nav-link" href="{% url 'accounts:sign_in' %}"><i
                                 class="fas fa-sign-in-alt"></i> 로그인</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-user-plus"></i> 회원가입</a>
+                        <a class="nav-link" href="{% url 'accounts:sign_up' %}"><i class="fas fa-user-plus"></i> 회원가입</a>
                     </li>
                     {% endif %}
                 </ul>
