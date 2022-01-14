@@ -17,7 +17,7 @@
         {% if deal_items %}
         {% for post in deal_items %}
         <tr>
-            <td>{{ forloop.counter }}</td>
+            <td>{{ post.id }}</td>
             <td>
                 <a href="#" class="t-no-underline t-text-indigo-400">{{ post.subject }}</a>
             </td>

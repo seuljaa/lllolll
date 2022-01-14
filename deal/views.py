@@ -21,7 +21,7 @@ def post_Armor(request):
             post = form.save(commit=False)
             post.user_id = request.user.id
             post.subject = request.POST.get('subject')
-            post.server = request.POST.get('server')
+            post.server = request.user.server
             post.group = request.POST.get('group')
             post.part = request.POST.get('part')
             post.price = request.POST.get('price')
