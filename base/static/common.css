@@ -3,28 +3,16 @@
   margin-bottom: 0px;
 }
 
-.t-mt-\[30px\] {
-  margin-top: 30px;
-}
-
-.t-ml-1 {
-  margin-left: 0.25rem;
-}
-
 .t-mt-1 {
   margin-top: 0.25rem;
 }
 
+.t-mt-\[30px\] {
+  margin-top: 30px;
+}
+
 .t-flex {
   display: flex;
-}
-
-.t-h-12 {
-  height: 3rem;
-}
-
-.t-h-40 {
-  height: 10rem;
 }
 
 .t-min-h-screen {
@@ -35,12 +23,52 @@
   width: 10rem;
 }
 
-.t-w-80 {
-  width: 20rem;
+.t-w-1 {
+  width: 0.25rem;
 }
 
-.t-w-11\/12 {
-  width: 91.666667%;
+.t-w-5 {
+  width: 1.25rem;
+}
+
+.t-w-10 {
+  width: 2.5rem;
+}
+
+.t-w-6 {
+  width: 1.5rem;
+}
+
+.t-w-auto {
+  width: auto;
+}
+
+.t-w-6\/12 {
+  width: 50%;
+}
+
+.t-w-8 {
+  width: 2rem;
+}
+
+.t-w-1\/2 {
+  width: 50%;
+}
+
+.t-w-0 {
+  width: 0px;
+}
+
+.t-w-px {
+  width: 1px;
+}
+
+.t-w-3\.5 {
+  width: 0.875rem;
+}
+
+.t-w-3 {
+  width: 0.75rem;
 }
 
 .t-flex-1 {
@@ -51,61 +79,12 @@
   flex-direction: column;
 }
 
-.t-content-center {
-  align-content: center;
-}
-
-.t-items-center {
-  align-items: center;
-}
-
-.t-justify-center {
-  justify-content: center;
-}
-
 .t-whitespace-nowrap {
   white-space: nowrap;
 }
 
-.t-border-solid {
-  border-style: solid;
-}
-
-.t-border-gray-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(107 114 128 / var(--tw-border-opacity));
-}
-
-.t-p-28 {
-  padding: 7rem;
-}
-
-.t-p-96 {
-  padding: 24rem;
-}
-
-.t-p-48 {
-  padding: 12rem;
-}
-
-.t-p-36 {
-  padding: 9rem;
-}
-
-.t-p-32 {
-  padding: 8rem;
-}
-
 .t-p-24 {
   padding: 6rem;
-}
-
-.t-p-10 {
-  padding: 2.5rem;
-}
-
-.t-p-1 {
-  padding: 0.25rem;
 }
 
 .t-py-\[20px\] {
@@ -121,29 +100,38 @@
   text-align: center;
 }
 
-.t-text-justify {
-  text-align: justify;
+.t-align-middle {
+  vertical-align: middle;
 }
 
-.t-text-\[20px\] {
-  font-size: 20px;
-}
-
-.t-text-\[100px\] {
-  font-size: 100px;
-}
-
-.t-text-\[50px\] {
-  font-size: 50px;
-}
-
-.t-font-bold {
-  font-weight: 700;
+.t-text-blue-400 {
+  --tw-text-opacity: 1;
+  color: rgb(96 165 250 / var(--tw-text-opacity));
 }
 
 .t-text-gray-400 {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
+.t-text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.t-text-blue-200 {
+  --tw-text-opacity: 1;
+  color: rgb(191 219 254 / var(--tw-text-opacity));
+}
+
+.t-text-indigo-400 {
+  --tw-text-opacity: 1;
+  color: rgb(129 140 248 / var(--tw-text-opacity));
+}
+
+.t-no-underline {
+  -webkit-text-decoration-line: none;
+          text-decoration-line: none;
 }
 
 @font-face {
