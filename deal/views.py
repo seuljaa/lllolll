@@ -10,14 +10,9 @@ def main(request):
     return render(request, 'main.html')
 
 def deal_list(request):
-    page = request.GET.get('page', '1')
-
-    deal_items = DealItems.objects.order_by('-reg_date')
-    paginator = Paginator(deal_items, 10)
-    page_obj = paginator.get_page(page)
-
-    context = {'deal_items': page_obj, 'page': page}
-    return render(request, 'deal/deal_list.html', context)
+    deal_items = DealItems.objects.order_by('-create_date')
+    context = {'deal_items': deal_items}
+    return render(request, 'deal/deal_items_list.html', context)
 
 def post_Armor(request):
     if request.method == 'POST':

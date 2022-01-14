@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{%block content %}
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="thead-dark">
+            <th>번호</th>
+            <th>제목</th>
+            <th>서버</th>
+            <th>닉네임</th>
+            <th>등록일</th>
+            <th>상태</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if deal_items %}
+        {% for post in deal_items %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>
+                <a href="#">{{ post.subject }}</a>
+            </td>
+            <td>{{ post.server }}</td>
+            <td>닉네임</td>
+            <td>{{ post.create_date }}</td>
+            {% if post.is_complete == 0 %}
+            <td>미완료</td>
+            {% else %}
+            <td>완료</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">게시글이 없습니다.</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+{%endblock%}
