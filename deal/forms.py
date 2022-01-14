@@ -12,3 +12,6 @@ class PostForm(forms.ModelForm):
         widgets = {
             'content': SummernoteWidget(),
         }
+        labels = {
+            'content': '내용'
+        }

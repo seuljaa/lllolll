@@ -2,16 +2,25 @@
 {% load django_bootstrap5 %}
 {%block content %}
 <section class="section-prod-detail">
-    사고팔고
     <div class="t-mt-[30px]">
         {% if user.is_authenticated %}
         <form method="POST">
             {% csrf_token %}
-            <select name="sale_buy">
-                <option value="True" selected="selected">삽니다</option>
-                <option value="False">팝니다</option>
-            </select>
-            <input id="subject" name="subject" class="t-w-40" type="text">
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        사고팔고
+                    </div>
+                    <div class="card-body">
+                        <select name="sale_buy">
+                            <option value="True" selected="selected">삽니다</option>
+                            <option value="False">팝니다</option>
+                        </select>
+                        <br>
+                        제목 : <input id="subject" name="subject" class="t-w-100" type="text">
+                    </div>
+                </div>
+            </div>
             <div class="container">
                 <div class="card">
                     <div class="card-header">
@@ -41,7 +50,7 @@
                             <option value="thief">도적</option>
                             <option value="pirate">해적</option>
                         </select>
-                        <section name="part">
+                        <select name="part">
                             <option value="cap">모자</option>
                             <option value="top">상의</option>
                             <option value="bottom">하의</option>
@@ -49,7 +58,8 @@
                             <option value="gloves">장갑</option>
                             <option value="cape">망토</option>
                             <option value="shoes">신발</option>
-                        </section>
+                        </select>
+                        <br>
                         <input id="price" name="price" class="t-w-40" type="text">
                         <label><input type="radio" name="price_kind" value="True">억</label>
                         <label><input type="radio" name="price_kind" value="False">엄</label>
@@ -73,6 +83,12 @@
                         <label><input type="radio" name="ability_2" value="epic">에픽</label>
                         <label><input type="radio" name="ability_2" value="unique">유니크</label>
                         <label><input type="radio" name="ability_2" value="legendary">레전드리</label>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="card">
+                    <div class="card-body">
                         {% bootstrap_form form %}
                         {% bootstrap_button button_type="submit" content="등록하기" %}
                         {% bootstrap_button button_type="reset" content="초기화" %}
@@ -85,7 +101,6 @@
             <a href="{% url 'accounts:sign_in' %}?next={{request.get_full_path}}">로그인</a> 후 이용해주세요.
         </div>
         {% endif %}
-
         {% if form.errors %}
         <script>
                     let $lastForm = $('form').last();
@@ -99,9 +114,12 @@
 
 
 
+
+
+
+
         </script>
         {% endif %}
-
     </div>
     </div>
 </section>
