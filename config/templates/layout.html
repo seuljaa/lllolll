@@ -7,7 +7,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>lllolll</title>
+    <title>부엉이</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -33,7 +33,7 @@
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'main' %}"><i class="fab fa-canadian-maple-leaf"></i> lllolll</a>
+            <a class="navbar-brand" href="{% url 'main' %}"><i class="fab fa-canadian-maple-leaf"></i> 부엉이</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -45,7 +45,8 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:sign_out' %}"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
+                        <a class="nav-link" href="{% url 'accounts:sign_out' %}"><i class="fas fa-sign-out-alt"></i>
+                            로그아웃</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
@@ -53,26 +54,66 @@
                                 class="fas fa-sign-in-alt"></i> 로그인</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:sign_up' %}"><i class="fas fa-user-plus"></i> 회원가입</a>
+                        <a class="nav-link" href="{% url 'accounts:sign_up' %}"><i class="fas fa-user-plus"></i>
+                            회원가입</a>
                     </li>
                     {% endif %}
                 </ul>
                 <form class="d-flex" id="searchForm" method="get" action="{% url 'main' %}">
-                    <input type="hidden" id="search_keyword" name="search_keyword" value="{{ search_keyword|default_if_none:'' }}">
+                    <input type="hidden" id="search_keyword" name="search_keyword"
+                           value="{{ search_keyword|default_if_none:'' }}">
                     <input type="hidden" id="page" name="page" value="{{ page }}">
-                    <input class="form-control me-2" type="search" name="search_keyword" placeholder="상품명을 입력해주세요." aria-label="Search" value="{{request.GET.search_keyword}}">
+                    <input class="form-control me-2" type="search" name="search_keyword" placeholder="상품명을 입력해주세요."
+                           aria-label="Search" value="{{request.GET.search_keyword}}">
                     <button class="btn btn-outline-success t-whitespace-nowrap" type="submit">검색</button>
                 </form>
             </div>
         </div>
     </nav>
 </header>
+<section>
+    <h1 class="t-p-24 t-text-center t-mt-1">
+        고요미 부엉이🦉
+    </h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Tenth navbar example">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample08"
+                    aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#"><i class="fas fa-home"></i> 홈</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-bs-toggle="dropdown"
+                           aria-expanded="false">고요미 사고팔고</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown08">
+                            <li><a class="dropdown-item" href="#">방어구 / 장신구</a></li>
+                            <li><a class="dropdown-item" href="#">무기</a></li>
+                            <li><a class="dropdown-item" href="#">캐시</a></li>
+                            <li><a class="dropdown-item" href="#">기타</a></li>
+                            <li><a class="dropdown-item" href="#">교불</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">고요미 구인구직</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">고요미 사진첩</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
 <section class="t-flex-1 t-py-[20px] t-flex t-flex-col">
     {%block content%}
     {%endblock%}
-{% block script %}
-<script type='text/javascript'>
+    {% block script %}
+    <script type='text/javascript'>
 $(document).ready(function(){
     $(".page-link").on('click', function() {
         $("#page").val($(this).data("page"));
@@ -85,15 +126,16 @@ $(document).ready(function(){
         $("#searchForm").submit();
     });
 });
-</script>
-{% endblock %}
+
+    </script>
+    {% endblock %}
 
 
 </section>
 
 <footer class="footer py-3 bg-light">
     <div class="container t-text-center">
-        <span class="text-muted"><i class="fab fa-pied-piper-hat"></i> lllolll</span>
+        <span class="text-muted"><i class="fab fa-pied-piper-hat"></i> 부엉이</span>
     </div>
 </footer>
 

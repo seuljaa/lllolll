@@ -11,7 +11,6 @@ def main(request):
 
 def deal_list(request):
     page = request.GET.get('page', '1')
-    search_keyword = request.GET.get('search_keyword', '')
 
     deal_items = DealItems.objects.order_by('-reg_date')
     paginator = Paginator(deal_items, 10)
