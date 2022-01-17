@@ -4,5 +4,8 @@
   },
   "scripts": {
     "css": "npx tailwindcss -i ./config/static/common.base.css -o ./config/static/common.css --watch"
+  },
+  "dependencies": {
+    "swiper": "^7.4.1"
   }
 }

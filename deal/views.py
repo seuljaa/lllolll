@@ -47,7 +47,7 @@ def post_Armor(request):
             post.ability_2 = request.POST.get('ability_2')
             post.sale_buy = request.POST.get('sale_buy')
             post.save()
-            return redirect('main')
+            return redirect('deal:deal_list')
     else:
         form = PostForm()
     return render(request, 'deal/deal_item_post.html', {'form': form})
