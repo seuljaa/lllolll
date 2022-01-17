@@ -1,18 +1,34 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 from .models import DealItems
 from .forms import PostForm
 
+
 # Create your views here.
 
 def main(request):
     return render(request, 'main.html')
 
+
 def deal_list(request):
+    page = request.GET.get('page', '1')
+    search_keyword = request.GET.get('search_keyword', '')
+
     deal_items = DealItems.objects.order_by('-create_date')
-    context = {'deal_items': deal_items}
+
+    if search_keyword:
+        deal_items = deal_items.filter(
+            Q(subject__icontains=search_keyword)
+        ).distinct()
+
+    paginator = Paginator(deal_items, 10)
+    page_obj = paginator.get_page(page)
+
+    context = {'deal_items': page_obj, 'page': page, 'search_keyword': search_keyword}
     return render(request, 'deal/deal_items_list.html', context)
+
 
 def post_Armor(request):
     if request.method == 'POST':
@@ -32,6 +48,10 @@ def post_Armor(request):
             post.sale_buy = request.POST.get('sale_buy')
             post.save()
             return redirect('main')
-    else :
+    else:
         form = PostForm()
-    return render(request, 'deal/deal_item_post.html', {'form':form} )
+    return render(request, 'deal/deal_item_post.html', {'form': form})
+
+def deal_detail(request, deal_id):
+    detail = DealItems.objects.get(pk=deal_id)
+    return render(request, 'deal/deal_items_detail.html', {'detail':detail})
