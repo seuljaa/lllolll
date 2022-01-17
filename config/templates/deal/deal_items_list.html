@@ -16,6 +16,7 @@
         <thead>
         <tr class="thead-dark">
             <th>번호</th>
+            <th>삼/팜</th>
             <th>제목</th>
             <th>서버</th>
             <th>닉네임</th>
@@ -28,6 +29,11 @@
         {% for post in deal_items %}
         <tr>
             <td>{{ post.id }}</td>
+            {% if post.sale_buy == 0 %}
+            <td>팝니다</td>
+            {% else %}
+            <td>삽니다</td>
+            {% endif %}
             <td>
                 <a href="{% url 'deal:deal_detail' post.id %}" class="t-no-underline t-text-indigo-400">{{ post.subject }}</a>
             </td>
