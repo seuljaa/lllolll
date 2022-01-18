@@ -55,3 +55,4 @@ def post_Armor(request):
 def deal_detail(request, deal_id):
     detail = DealItems.objects.get(pk=deal_id)
     return render(request, 'deal/deal_items_detail.html', {'detail':detail})
+
