@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% load django_bootstrap5 %}
+{%block content %}
+
+<div class="container my-3">
+    {% for list in photo %}
+    <div class="item" style="padding-top: 15px;">
+        <p style="text-align: left; font-size: 0.8em;">
+            <img src="{{ list.imgfile.url }}" style="width: 180px; height: 150px;" alt=""> <br>
+            {{ list.user }} <br>
+        </p>
+    </div>
+    {% endfor %}
+    <a class="btn btn-primary" href="{% url 'photo:photo_post' %}">게시글작성</a>
+</div>
+<ul class="pagination justify-content-center t-mt-12">
+    <!-- 이전페이지 -->
+    {% if photo.has_previous %}
+    <li class="page-item">
+        <a class="page-link" data-page="{{ photo.previous_page_number }}" href="#">이전</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+    </li>
+    {% endif %}
+    <!-- 페이지리스트 -->
+    {% for page_number in photo.paginator.page_range %}
+    {% if photo.number|add:-5 <= page_number <= photo.number|add:5 %}
+    {% if page_number == photo.number %}
+    <li class="page-item active" aria-current="page">
+        <a class="page-link" data-page="{{ page_number }}" href="#">{{ page_number }}</a>
+    </li>
+    {% else %}
+    <li class="page-item">
+        <a class="page-link" data-page="{{ page_number }}" href="#">{{ page_number }}</a>
+    </li>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+    <!-- 다음페이지 -->
+    {% if photo.has_next %}
+    <li class="page-item">
+        <a class="page-link" data-page="{{ photo.next_page_number }}" href="#">다음</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+    </li>
+    {% endif %}
+</ul>
+{%endblock%}

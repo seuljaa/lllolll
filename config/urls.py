@@ -24,6 +24,7 @@ urlpatterns = [
     path('', views.main, name='main'),
     path('deal/', include('deal.urls')),
     path('account/', include('accounts.urls')),
+    path('photo/', include('photo.urls')),
     path('summernote/', include('django_summernote.urls')),
 ]
 

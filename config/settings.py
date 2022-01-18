@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # 로컬
     'deal.apps.DealConfig',
     'accounts.apps.AccountsConfig',
+    'photo.apps.PhotoConfig',
 ]
 
 MIDDLEWARE = [
