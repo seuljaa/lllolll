@@ -6,6 +6,7 @@
     "css": "npx tailwindcss -i ./config/static/common.base.css -o ./config/static/common.css --watch"
   },
   "dependencies": {
+    "cropperjs": "^1.5.12",
     "swiper": "^7.4.1"
   }
 }

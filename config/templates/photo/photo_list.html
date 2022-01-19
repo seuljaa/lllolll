@@ -1,18 +1,28 @@
 {% extends "layout.html" %}
 {% load django_bootstrap5 %}
-{%block content %}
+{% block content %}
 
-<div class="container my-3">
-    {% for list in photo %}
-    <div class="item" style="padding-top: 15px;">
-        <p style="text-align: left; font-size: 0.8em;">
-            <img src="{{ list.imgfile.url }}" style="width: 180px; height: 150px;" alt=""> <br>
-            {{ list.user }} <br>
-        </p>
+<section class="section-prod-list">
+    <div class="container">
+        <div class="container">
+            <ul class="t-grid t-grid-cols-1 sm:t-grid-cols-2 md:t-grid-cols-3 lg:sm:t-grid-cols-4 t-gap-[20px] t-mt-4">
+                {% for list in photo %}
+                <li class="t-flex t-flex-col t-group">
+                    <a href="#" data-before="Review">
+                        <img src="{{ list.imgfile.url }}" class="t-block t-w-full t-object-cover"
+                             style="aspect-ratio: 1 / 1;" alt="">
+                        <br>
+                        </img>
+                    </a>
+                    {{ list.user }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a class="btn btn-primary" href="{% url 'photo:photo_post' %}">게시글작성</a>
     </div>
-    {% endfor %}
-    <a class="btn btn-primary" href="{% url 'photo:photo_post' %}">게시글작성</a>
-</div>
+</section>
+
 <ul class="pagination justify-content-center t-mt-12">
     <!-- 이전페이지 -->
     {% if photo.has_previous %}

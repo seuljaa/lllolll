@@ -1,18 +1,21 @@
 {% extends "layout.html" %}
 {% load django_bootstrap5 %}
 {%block content %}
+
 <section class="section-prod-detail">
     <div class="t-mt-[30px]">
         {% if user.is_authenticated %}
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="container">
                 <div class="card-body">
                     <div class="container">
                         <div class="card">
                             <div class="card-body">
-                                {% bootstrap_form form %}
-                                {% bootstrap_button button_type="submit" content="등록하기" %}
+                                <div class="container">
+                                    {% bootstrap_form form %}
+                                    {% bootstrap_button button_type="submit" content="등록하기" %}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -30,11 +33,6 @@
                     $(window).on('load', function() {
                         $(window).scrollTop($lastForm.offset().top);
                     });
-
-
-
-
-
         </script>
         {% endif %}
     </div>

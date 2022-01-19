@@ -18,12 +18,15 @@ def photo_list(request):
 
 def photo_post(request):
     if request.method == 'POST':
-        form = Photo_PostForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.user_id = request.user.id
-            post.save()
-            return redirect('photo:photo_list')
+        content = request.POST['content']
+        img = request.FILES["imgfile"]
+        fileupload = Photo_post(
+            user_id=request.user.id,
+            content=content,
+            imgfile=img,
+        )
+        fileupload.save()
+        return redirect('photo:photo_list')
     else:
         form = Photo_PostForm()
         return render(request, 'photo/photo_post.html', {'form': form})
