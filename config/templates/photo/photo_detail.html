@@ -1,7 +1,19 @@
 {% extends "layout.html" %}
 {% load django_bootstrap5 %}
 {% block content %}
-
-
+<div class="container  t-text-center">
+    <img src="{{ photo_detail.imgfile.url }}" style="width: 400px;" alt="">
+</div>
+<div class="card card-body t-w-1/3 container t-mt-4 t-p-0 t-border-0 t-text-3xl">
+    💗   💬
+</div>
+<div class="card card-body t-w-1/3 container ">
+    <div class="t-font-bold">
+        {{photo_detail.user}}
+    </div>
+    <div class="t-mt-1">
+        {{photo_detail.content}}
+    </div>
+</div>
 
 {%endblock%}

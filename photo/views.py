@@ -30,3 +30,7 @@ def photo_post(request):
     else:
         form = Photo_PostForm()
         return render(request, 'photo/photo_post.html', {'form': form})
+
+def photo_detail(request, photo_id):
+    photo_detail = Photo_post.objects.get(pk=photo_id)
+    return render(request, 'photo/photo_detail.html', {'photo_detail': photo_detail})

@@ -8,7 +8,7 @@
             <ul class="t-grid t-grid-cols-1 sm:t-grid-cols-2 md:t-grid-cols-3 lg:sm:t-grid-cols-4 t-gap-[20px] t-mt-4">
                 {% for list in photo %}
                 <li class="t-flex t-flex-col t-group">
-                    <a href="#" data-before="Review">
+                    <a href="{% url 'photo:photo_detail' list.id %}" data-before="Review">
                         <img src="{{ list.imgfile.url }}" class="t-block t-w-full t-object-cover"
                              style="aspect-ratio: 1 / 1;" alt="">
                         <br>
