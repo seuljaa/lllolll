@@ -1,8 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.decorators.http import require_POST
-import json
 
 from .forms import Photo_PostForm
 from .models import Photo_post
@@ -38,19 +35,23 @@ def photo_post(request):
 
 def photo_detail(request, photo_id):
     photo_detail = Photo_post.objects.get(pk=photo_id)
-    return render(request, 'photo/photo_detail.html', {'photo_detail': photo_detail})
+    like_list = photo_detail.likes_user.filter(id=request.user.id)
+    context = {'photo_detail': photo_detail, 'like_list': like_list}
+    return render(request, 'photo/photo_detail.html', context)
 
 @login_required
-@require_POST
-def photo_like(request):
-    pk = request.POST.get('pk', None)
-    photo = get_object_or_404(Photo_post, pk=pk)
+def photo_like(request, photo_id):
+    post = get_object_or_404(Photo_post, id=photo_id)
     user = request.user
 
-    if photo.likes_user.filter(id=user.id).exists():
-        photo.likes_user.remove(user)
-    else:
-        photo.likes_user.add(user)
+    if post.likes_user.filter(id=user.id).exists():
+        post.likes_user.remove(user)
+        post.like_count -= 1
+        post.save()
 
-    context = {'likes_count':photo.count_likes_user()}
-    return HttpResponse(json.dumps(context), content_type="application/json")
+
+    else:
+        post.likes_user.add(user)
+        post.like_count += 1
+        post.save()
+    return redirect('photo:photo_detail', photo_id)
