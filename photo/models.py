@@ -1,6 +1,8 @@
+import os
 
 from django.db import models
 from accounts.models import User
+from config import settings
 
 
 # Create your models here.
@@ -20,3 +22,8 @@ class Photo_post(models.Model):
 
     def count_likes_user(self):  # total likes_user
         return self.likes_user.count()
+
+
+    def delete(self, *args, **kargs):
+        os.remove(os.path.join(settings.MEDIA_ROOT, self.imgfile.name))
+        super(Photo_post, self).delete(*args, **kargs)

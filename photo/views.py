@@ -55,3 +55,8 @@ def photo_like(request, photo_id):
         post.like_count += 1
         post.save()
     return redirect('photo:photo_detail', photo_id)
+
+def delete(request, photo_id):
+    post = Photo_post.objects.get(pk=photo_id)
+    post.delete()
+    return redirect('photo:photo_list')

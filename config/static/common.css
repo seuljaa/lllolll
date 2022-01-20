@@ -1,3 +1,7 @@
+.t-float-right {
+  float: right;
+}
+
 .t-my-\[0px\] {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -170,6 +174,10 @@
 
 .t-text-center {
   text-align: center;
+}
+
+.t-text-right {
+  text-align: right;
 }
 
 .t-align-middle {
