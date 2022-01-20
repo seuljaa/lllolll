@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -6,6 +7,7 @@ from .models import Photo_post
 from django.core.paginator import Paginator
 # Create your views here.
 
+@login_required
 def photo_list(request):
     page = request.GET.get('page', '1')
 
@@ -17,7 +19,7 @@ def photo_list(request):
     context = {'photo': page_obj, 'page': page}
     return render(request, 'photo/photo_list.html', context)
 
-
+@login_required
 def photo_post(request):
     if request.method == 'POST':
         content = request.POST['content']
@@ -33,6 +35,7 @@ def photo_post(request):
         form = Photo_PostForm()
         return render(request, 'photo/photo_post.html', {'form': form})
 
+@login_required
 def photo_detail(request, photo_id):
     photo_detail = Photo_post.objects.get(pk=photo_id)
     like_list = photo_detail.likes_user.filter(id=request.user.id)
@@ -56,7 +59,13 @@ def photo_like(request, photo_id):
         post.save()
     return redirect('photo:photo_detail', photo_id)
 
+
+@login_required
 def delete(request, photo_id):
     post = Photo_post.objects.get(pk=photo_id)
-    post.delete()
-    return redirect('photo:photo_list')
+    if request.user != post.user:
+        messages.error(request, '본인이 게시글만 삭제할수있습니다.')
+        return redirect('photo:photo_detail', photo_id)
+    else:
+        post.delete()
+        return redirect('photo:photo_list')

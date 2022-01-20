@@ -96,6 +96,10 @@
   justify-content: center;
 }
 
+.t-justify-between {
+  justify-content: space-between;
+}
+
 .t-gap-\[20px\] {
   gap: 20px;
 }
