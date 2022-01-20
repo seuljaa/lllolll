@@ -7,7 +7,6 @@ from .models import Photo_post
 from django.core.paginator import Paginator
 # Create your views here.
 
-@login_required
 def photo_list(request):
     page = request.GET.get('page', '1')
 
@@ -19,7 +18,7 @@ def photo_list(request):
     context = {'photo': page_obj, 'page': page}
     return render(request, 'photo/photo_list.html', context)
 
-@login_required
+@login_required(login_url='accounts:sign_in')
 def photo_post(request):
     if request.method == 'POST':
         content = request.POST['content']
@@ -35,14 +34,14 @@ def photo_post(request):
         form = Photo_PostForm()
         return render(request, 'photo/photo_post.html', {'form': form})
 
-@login_required
+@login_required(login_url='accounts:sign_in')
 def photo_detail(request, photo_id):
     photo_detail = Photo_post.objects.get(pk=photo_id)
     like_list = photo_detail.likes_user.filter(id=request.user.id)
     context = {'photo_detail': photo_detail, 'like_list': like_list}
     return render(request, 'photo/photo_detail.html', context)
 
-@login_required
+@login_required(login_url='accounts:sign_in')
 def photo_like(request, photo_id):
     post = get_object_or_404(Photo_post, id=photo_id)
     user = request.user
@@ -60,7 +59,7 @@ def photo_like(request, photo_id):
     return redirect('photo:photo_detail', photo_id)
 
 
-@login_required
+@login_required(login_url='accounts:sign_in')
 def delete(request, photo_id):
     post = Photo_post.objects.get(pk=photo_id)
     if request.user != post.user:
