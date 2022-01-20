@@ -51,6 +51,10 @@
                 {{ comment.content }}<br>
             </div>
             {% endfor %}
+            {% else %}
+            <div style="opacity:0.7;">
+                작성된 댓글이 없습니다💦
+            </div>
             {% endif %}
         </div>
         <div class="t-pt-3 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0">
