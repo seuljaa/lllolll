@@ -8,10 +8,11 @@
     <div>
         <a href="{% url 'photo:photo_like' photo_detail.id %}">
             <a href="{% url 'photo:photo_like' photo_detail.id %}" style="text-decoration-line:none;">
+                {% if user in photo_detail.likes_user.all %}
                 💗
-            </a>
-            <a href="#" style="text-decoration-line:none;">
-                💬
+                {% else %}
+                🤍
+                {% endif %}
             </a>
         </a>
     </div>
@@ -22,8 +23,23 @@
     <div class="t-font-bold">
         {{photo_detail.user}}
     </div>
-    <div class="t-mt-1">
+    <div class="t-mt-1 t-mb-2.5">
         {{photo_detail.content}}
+    </div>
+    <div class="t-p-3 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0">
+        {% if photo_detail.comment_set.count > 0 %}
+        {% for comment in photo_detail.comment_set.all %}
+        {{ comment.user }} {{ comment.content }}<br>
+        {% endfor %}
+        {% endif %}
+        <div>
+            <form method="POST" action="{% url 'comment:comment_photo' photo_detail.id %}">
+                {% csrf_token %}
+                {{user}}
+                 <input type="text" name="comment" id="comment" placeholder="댓글입력..." style="border:none; width:500px; ">
+                <input type="submit" style="border:none; background-color:white; color:skyblue;" value="게시">
+            </form>
+        </div>
     </div>
 </div>
 

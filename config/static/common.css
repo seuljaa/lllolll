@@ -24,6 +24,22 @@
   margin-top: 1rem;
 }
 
+.t-mb-2\.5 {
+  margin-bottom: 0.625rem;
+}
+
+.t-mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.t-mt-2\.5 {
+  margin-top: 0.625rem;
+}
+
+.t-mt-2 {
+  margin-top: 0.5rem;
+}
+
 .t-block {
   display: block;
 }
@@ -88,6 +104,44 @@
   border-width: 0px;
 }
 
+.t-border {
+  border-width: 1px;
+}
+
+.t-border-t {
+  border-top-width: 1px;
+}
+
+.t-border-r-0 {
+  border-right-width: 0px;
+}
+
+.t-border-b-0 {
+  border-bottom-width: 0px;
+}
+
+.t-border-l-0 {
+  border-left-width: 0px;
+}
+
+.t-border-solid {
+  border-style: solid;
+}
+
+.t-border-black {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+
+.t-border-gray-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity));
+}
+
+.t-bg-current {
+  background-color: currentColor;
+}
+
 .t-object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -99,6 +153,10 @@
 
 .t-p-0 {
   padding: 0px;
+}
+
+.t-p-3 {
+  padding: 0.75rem;
 }
 
 .t-py-\[20px\] {
@@ -116,11 +174,6 @@
 
 .t-align-middle {
   vertical-align: middle;
-}
-
-.t-text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
 }
 
 .t-text-2xl {

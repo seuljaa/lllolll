@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'deal.apps.DealConfig',
     'accounts.apps.AccountsConfig',
     'photo.apps.PhotoConfig',
+    'comment.apps.CommentConfig',
 ]
 
 MIDDLEWARE = [
