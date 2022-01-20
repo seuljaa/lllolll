@@ -41,12 +41,19 @@
         {{photo_detail.content}}
     </div>
     <div class="t-p-3 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0">
-        {% if photo_detail.comment_set.count > 0 %}
-        {% for comment in photo_detail.comment_set.all %}
-        {{ comment.user }} {{ comment.content }}<br>
-        {% endfor %}
-        {% endif %}
-        <div>
+        <div class="t-pb-3">
+            {% if photo_detail.comment_set.count > 0 %}
+            {% for comment in photo_detail.comment_set.all %}
+            <div class="t-flex">
+                <div class="t-font-bold">
+                    {{ comment.user }}&nbsp;&nbsp;
+                </div>
+                {{ comment.content }}<br>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="t-pt-3 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0">
             <form method="POST" action="{% url 'comment:comment_photo' photo_detail.id %}">
                 {% csrf_token %}
                 {{user}}

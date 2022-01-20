@@ -176,6 +176,18 @@
   padding-top: 56px;
 }
 
+.t-pt-1 {
+  padding-top: 0.25rem;
+}
+
+.t-pt-3 {
+  padding-top: 0.75rem;
+}
+
+.t-pb-3 {
+  padding-bottom: 0.75rem;
+}
+
 .t-text-center {
   text-align: center;
 }
@@ -205,6 +217,16 @@
 .t-text-gray-400 {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
+.t-text-blue-300 {
+  --tw-text-opacity: 1;
+  color: rgb(147 197 253 / var(--tw-text-opacity));
+}
+
+.t-text-purple-400 {
+  --tw-text-opacity: 1;
+  color: rgb(192 132 252 / var(--tw-text-opacity));
 }
 
 .t-no-underline {
