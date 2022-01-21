@@ -1,7 +1,3 @@
-.t-float-right {
-  float: right;
-}
-
 .t-my-\[0px\] {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -34,14 +30,6 @@
 
 .t-mb-2 {
   margin-bottom: 0.5rem;
-}
-
-.t-mt-2\.5 {
-  margin-top: 0.625rem;
-}
-
-.t-mt-2 {
-  margin-top: 0.5rem;
 }
 
 .t-block {
@@ -112,42 +100,29 @@
   border-width: 0px;
 }
 
-.t-border {
-  border-width: 1px;
-}
-
-.t-border-t {
-  border-top-width: 1px;
-}
-
 .t-border-r-0 {
   border-right-width: 0px;
-}
-
-.t-border-b-0 {
-  border-bottom-width: 0px;
 }
 
 .t-border-l-0 {
   border-left-width: 0px;
 }
 
-.t-border-solid {
-  border-style: solid;
+.t-border-t {
+  border-top-width: 1px;
 }
 
-.t-border-black {
-  --tw-border-opacity: 1;
-  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+.t-border-b-0 {
+  border-bottom-width: 0px;
+}
+
+.t-border-solid {
+  border-style: solid;
 }
 
 .t-border-gray-400 {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
-}
-
-.t-bg-current {
-  background-color: currentColor;
 }
 
 .t-object-cover {
@@ -176,16 +151,12 @@
   padding-top: 56px;
 }
 
-.t-pt-1 {
-  padding-top: 0.25rem;
+.t-pb-3 {
+  padding-bottom: 0.75rem;
 }
 
 .t-pt-3 {
   padding-top: 0.75rem;
-}
-
-.t-pb-3 {
-  padding-bottom: 0.75rem;
 }
 
 .t-text-center {
@@ -217,16 +188,6 @@
 .t-text-gray-400 {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
-}
-
-.t-text-blue-300 {
-  --tw-text-opacity: 1;
-  color: rgb(147 197 253 / var(--tw-text-opacity));
-}
-
-.t-text-purple-400 {
-  --tw-text-opacity: 1;
-  color: rgb(192 132 252 / var(--tw-text-opacity));
 }
 
 .t-no-underline {

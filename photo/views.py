@@ -1,38 +1,44 @@
+from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import Photo_PostForm
-from .models import Photo_post
+from .models import Photo_post, Photo_Image
 from django.core.paginator import Paginator
+
+
 # Create your views here.
 
 def photo_list(request):
     page = request.GET.get('page', '1')
 
     photo = Photo_post.objects.order_by('-create_date')
+    img = []
+    for photo_id in photo:
+        img.append(Photo_Image.objects.filter(post_id=photo_id).first())
 
     paginator = Paginator(photo, 10)
     page_obj = paginator.get_page(page)
 
-    context = {'photo': page_obj, 'page': page}
+    context = {'photo': page_obj, 'page': page, 'img': img}
     return render(request, 'photo/photo_list.html', context)
+
 
 @login_required(login_url='accounts:sign_in')
 def photo_post(request):
     if request.method == 'POST':
         content = request.POST['content']
-        img = request.FILES["imgfile"]
-        fileupload = Photo_post(
-            user_id=request.user.id,
-            content=content,
-            imgfile=img,
-        )
-        fileupload.save()
+        img_list = request.FILES.getlist('imgfile[]')
+        images = Photo_post.objects.create(user_id=request.user.id, content=content)
+        images.save()
+        for img in img_list:
+            Photo_Image.objects.create(post=Photo_post.objects.last(), imgfile=img)
         return redirect('photo:photo_list')
     else:
         form = Photo_PostForm()
-        return render(request, 'photo/photo_post.html', {'form': form})
+    return render(request, 'photo/photo_post.html', {'form': form})
+
 
 @login_required(login_url='accounts:sign_in')
 def photo_detail(request, photo_id):
@@ -40,6 +46,7 @@ def photo_detail(request, photo_id):
     like_list = photo_detail.likes_user.filter(id=request.user.id)
     context = {'photo_detail': photo_detail, 'like_list': like_list}
     return render(request, 'photo/photo_detail.html', context)
+
 
 @login_required(login_url='accounts:sign_in')
 def photo_like(request, photo_id):

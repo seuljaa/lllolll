@@ -9,10 +9,14 @@
                 {% for list in photo %}
                 <li class="t-flex t-flex-col t-group">
                     <a href="{% url 'photo:photo_detail' list.id %}" data-before="Review">
-                        <img src="{{ list.imgfile.url }}" class="t-block t-w-full t-object-cover"
+                        {% for img_id in img %}
+                        {% if img_id.post.id == list.id %}
+                        <img src="{{ img_id.imgfile.url }}" class="t-block t-w-full t-object-cover"
                              style="aspect-ratio: 1 / 1;" alt="">
                         <br>
                         </img>
+                        {% endif %}
+                        {% endfor %}
                     </a>
                     {{ list.user }}
                 </li>

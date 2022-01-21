@@ -11,7 +11,6 @@ class Photo_post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     create_date = models.DateTimeField('등록날짜', auto_now_add=True)
     update_date = models.DateTimeField('갱신날짜', auto_now=True)
-    imgfile = models.ImageField(null=True, upload_to="", blank=True)
     content = models.TextField()
     like_count = models.PositiveIntegerField(default=0)
     likes_user = models.ManyToManyField(
@@ -27,3 +26,9 @@ class Photo_post(models.Model):
     def delete(self, *args, **kargs):
         os.remove(os.path.join(settings.MEDIA_ROOT, self.imgfile.name))
         super(Photo_post, self).delete(*args, **kargs)
+
+
+class Photo_Image(models.Model):
+
+    post = models.ForeignKey(Photo_post, on_delete=models.CASCADE)
+    imgfile = models.ImageField(null=True, upload_to="photo", blank=True)
