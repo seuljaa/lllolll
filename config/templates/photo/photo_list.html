@@ -5,6 +5,8 @@
 <section class="section-prod-list">
     <div class="container">
         <div class="container">
+            <a class="btn btn-primary" href="{% url 'photo:photo_post' %}">게시글작성</a>
+            {% if photo %}
             <ul class="t-grid t-grid-cols-1 sm:t-grid-cols-2 md:t-grid-cols-3 lg:sm:t-grid-cols-4 t-gap-[20px] t-mt-4">
                 {% for list in photo %}
                 <li class="t-flex t-flex-col t-group">
@@ -22,8 +24,12 @@
                 </li>
                 {% endfor %}
             </ul>
+            {% else %}
+            <div style="opacity:0.7; margin-top:10px; text-align: center;">
+                작성된 게시글이 없습니다💦
+            </div>
+            {% endif %}
         </div>
-        <a class="btn btn-primary" href="{% url 'photo:photo_post' %}">게시글작성</a>
     </div>
 </section>
 
