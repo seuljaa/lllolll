@@ -43,8 +43,9 @@ def photo_post(request):
 @login_required(login_url='accounts:sign_in')
 def photo_detail(request, photo_id):
     photo_detail = Photo_post.objects.get(pk=photo_id)
+    photo = Photo_Image.objects.filter(post_id=photo_id)
     like_list = photo_detail.likes_user.filter(id=request.user.id)
-    context = {'photo_detail': photo_detail, 'like_list': like_list}
+    context = {'photo_detail': photo_detail, 'like_list': like_list, 'photo':photo}
     return render(request, 'photo/photo_detail.html', context)
 
 

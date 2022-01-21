@@ -2,6 +2,31 @@
 {% load django_bootstrap5 %}
 {% block content %}
 
+<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<style>
+    .swiper {
+  width: 400px;
+  height: 400px;
+}
+
+    .swiper-button-next ,
+    .swiper-button-prev {
+        --swiper-navigation-size:22px;
+        color: white;
+        font-weight: 900;
+        opacity: 0.5;
+        text-shadow: -1px 0 pink, 0 1px pink, 1px 0 pink, 0 -1px pink;
+    }
+
+    .swiper-container { width: 100%; height: 100%; }
+.swiper-slide { text-align: center; font-size: 18px; background: #fff; display: flex; justify-content: center; align-items: center; }
+.swiper-pagination-bullet { width: 12px; height: 12px; background: transparent; border: 1px solid pink; opacity: 1; }
+.swiper-pagination-bullet-active { width: 40px; transition: width .5s; border-radius: 5px; background: pink; border: 1px solid transparent; }
+
+</style>
+
+
 <div class="card card-body t-w-1/3 container t-mt-4 t-border-r-0 t-border-l-0 t-font-bold">
     <div class="t-flex t-justify-between">
         <div>
@@ -17,7 +42,23 @@
 </div>
 
 <div class="container t-text-center t-mt-4">
-    <img src="{{ photo_detail.imgfile.url }}" style="width: 400px;" alt="">
+<div class="swiper">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper t-text-center">
+        <!-- Slides -->
+        {% for img in photo%}
+        <div class="swiper-slide">
+            <img src="{{ img.imgfile.url }}" style="width: 400px; height: 400px;" alt="">
+        </div>
+        {% endfor %}
+    </div>
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination"></div>
+
+</div>
+
 </div>
 <div class="card card-body t-w-1/3 container t-mt-4 t-p-0 t-border-0 t-text-2xl">
     <div>
@@ -69,3 +110,22 @@
 </div>
 
 {%endblock%}
+
+{% block script %}
+<script type='text/javascript'>
+    const swiper = new Swiper('.swiper', {
+
+  loop: true,
+
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+
+  pagination: { el: '.swiper-pagination', type: 'bullets', },
+});
+
+</script>
+
+</script>
+{% endblock %}
