@@ -57,6 +57,35 @@
         <div class="t-p-8">
             {{ detail.content | safe }}
         </div>
+        <div class="t-p-3 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0">
+            <div class="t-pb-3">
+                {% if detail.comment_set.count > 0 %}
+                {% for comment in detail.comment_set.all %}
+                <div class="t-flex">
+                    <div class="t-font-bold">
+                        {{ comment.user }}&nbsp;&nbsp;
+                    </div>
+                    {{ comment.content }}<br>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div style="opacity:0.7;">
+                    작성된 댓글이 없습니다💦
+                </div>
+                {% endif %}
+            </div>
+            <div class="t-pt-3 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0">
+                <div class="t-text-left">
+                    <form method="POST" action="{% url 'comment:comment_deal' detail.id %}">
+                        {% csrf_token %}
+                        {{user}}
+                        <input type="text" name="comment" id="comment" placeholder="댓글입력..."
+                               style="border:none; width:700px; ">
+                        <input type="submit" style="border:none; background-color:white; color:skyblue;" value="게시">
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
