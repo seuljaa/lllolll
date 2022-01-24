@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% load django_bootstrap5 %}
+{% load humanize %}
 {% block content %}
 <div class="container t-text-center t-w-1/2">
     <div>
@@ -38,6 +39,7 @@
                                 <th>스타포스</th>
                                 <th>윗잠</th>
                                 <th>아랫잠</th>
+                                <th>가격</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -47,6 +49,14 @@
                                 <td>{{ detail.star_force }}</td>
                                 <td>{{ detail.ability_1 }}</td>
                                 <td>{{ detail.ability_2 }}</td>
+                                <td>
+                                    {{ detail.price|intcomma }}
+                                    {% if detail.price_kind == true %}
+                                    억
+                                    {% else %}
+                                    엄
+                                    {% endif %}
+                                </td>
                             </tr>
                             </tbody>
                         </table>
