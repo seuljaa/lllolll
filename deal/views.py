@@ -50,7 +50,7 @@ def post_Armor(request):
             return redirect('deal:deal_list')
     else:
         form = PostForm()
-    return render(request, 'deal/deal_item_post.html', {'form': form})
+    return render(request, 'deal/deal_item_post.html', {'form': form)
 
 @login_required(login_url='accounts:sign_in')
 def deal_detail(request, deal_id):

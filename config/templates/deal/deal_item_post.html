@@ -30,21 +30,30 @@
                         분류
                         <br>
                         <select name="group">
-                            <option value="warrior">전사</option>
-                            <option value="magician">마법사</option>
-                            <option value="archer">궁수</option>
-                            <option value="thief">도적</option>
-                            <option value="pirate">해적</option>
+                            <option value="전사">전사</option>
+                            <option value="마법사">마법사</option>
+                            <option value="궁수">궁수</option>
+                            <option value="도적">도적</option>
+                            <option value="해적">해적</option>
                         </select>
-                        <select name="part">
-                            <option value="cap">모자</option>
-                            <option value="top">상의</option>
-                            <option value="bottom">하의</option>
-                            <option value="dress">한벌옷</option>
-                            <option value="gloves">장갑</option>
-                            <option value="cape">망토</option>
-                            <option value="shoes">신발</option>
+                        <select name="kind">
+                            <option value="방어구">방어구</option>
+                            <option value="장신구">장신구</option>
+                            <option value="무기">무기</option>
+                            <option value="캐시">캐시</option>
+                            <option value="교불">교불</option>
                         </select>
+                        {% if kind == 방어구 %}
+                        <select name="part_armor">
+                            <option value="모자">모자</option>
+                            <option value="상의">상의</option>
+                            <option value="하의">하의</option>
+                            <option value="한벌옷">한벌옷</option>
+                            <option value="장갑">장갑</option>
+                            <option value="망토">망토</option>
+                            <option value="신발">신발</option>
+                        </select>
+                        {% endif %}
                         <br>
                         <input id="price" name="price" class="t-w-40" type="">
                         <label><input type="radio" name="price_kind" value="True" checked>억</label>
