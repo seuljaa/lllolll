@@ -3,8 +3,8 @@ from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.core.paginator import Paginator
-from .models import DealItems
-from .forms import PostForm
+from .models import DealItems, Group
+from .forms import PostForm, Group_Armor
 
 
 # Create your views here.
@@ -39,7 +39,8 @@ def post_Armor(request):
             post.subject = request.POST.get('subject')
             post.server = request.user.server
             post.group = request.POST.get('group')
-            post.part = request.POST.get('part')
+            post.kind = request.POST.get('kind')
+            post.part = request.POST.get('choose')
             post.price = request.POST.get('price')
             post.price_kind = request.POST.get('price_kind')
             post.star_force = request.POST.get('star_force')
@@ -50,7 +51,8 @@ def post_Armor(request):
             return redirect('deal:deal_list')
     else:
         form = PostForm()
-    return render(request, 'deal/deal_item_post.html', {'form': form)
+        grou_armor = Group_Armor()
+    return render(request, 'deal/deal_item_post.html', {'form': form, 'grou_armor':grou_armor})
 
 @login_required(login_url='accounts:sign_in')
 def deal_detail(request, deal_id):

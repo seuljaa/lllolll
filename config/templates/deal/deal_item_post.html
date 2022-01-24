@@ -17,7 +17,7 @@
                             <option value="False">팝니다</option>
                         </select>
                         <br>
-                        제목 : <input id="subject" name="subject" class="t-w-100" type="text">
+                        제목 : <input id="subject" name="subject" class="t-w-96" type="text">
                     </div>
                 </div>
             </div>
@@ -36,24 +36,15 @@
                             <option value="도적">도적</option>
                             <option value="해적">해적</option>
                         </select>
-                        <select name="kind">
+                        <select name="kind" onchange="categoryChange(this)">
+                            <option>선택해주세요.</option>
                             <option value="방어구">방어구</option>
                             <option value="장신구">장신구</option>
                             <option value="무기">무기</option>
-                            <option value="캐시">캐시</option>
-                            <option value="교불">교불</option>
                         </select>
-                        {% if kind == 방어구 %}
-                        <select name="part_armor">
-                            <option value="모자">모자</option>
-                            <option value="상의">상의</option>
-                            <option value="하의">하의</option>
-                            <option value="한벌옷">한벌옷</option>
-                            <option value="장갑">장갑</option>
-                            <option value="망토">망토</option>
-                            <option value="신발">신발</option>
+                        <select name="choose", id="choose">
+                            <option>선택해주세요.</option>
                         </select>
-                        {% endif %}
                         <br>
                         <input id="price" name="price" class="t-w-40" type="">
                         <label><input type="radio" name="price_kind" value="True" checked>억</label>
@@ -61,23 +52,23 @@
                         <br>
                         스타포스
                         <br>
-                        <label><input type="radio" name="star_force" value="na" checked>해당없음</label>
-                        <label><input type="radio" name="star_force" value="under_17">17성 이하</label>
-                        <label><input type="radio" name="star_force" value="up_17">17성 초과</label>
+                        <label><input type="radio" name="star_force" value="해당없음" checked>해당없음</label>
+                        <label><input type="radio" name="star_force" value="17성 이하">17성 이하</label>
+                        <label><input type="radio" name="star_force" value="17성 초과">17성 초과</label>
                         <br>
                         윗 잠재
                         <br>
-                        <label><input type="radio" name="ability_1" value="na" checked>해당없음</label>
-                        <label><input type="radio" name="ability_1" value="epic">에픽</label>
-                        <label><input type="radio" name="ability_1" value="unique">유니크</label>
-                        <label><input type="radio" name="ability_1" value="legendary">레전드리</label>
+                        <label><input type="radio" name="ability_1" value="해당없음" checked>해당없음</label>
+                        <label><input type="radio" name="ability_1" value="에픽">에픽</label>
+                        <label><input type="radio" name="ability_1" value="유니크">유니크</label>
+                        <label><input type="radio" name="ability_1" value="레전드리">레전드리</label>
                         <br>
                         아랫 잠재
                         <br>
-                        <label><input type="radio" name="ability_2" value="na" checked>해당없음</label>
-                        <label><input type="radio" name="ability_2" value="epic">에픽</label>
-                        <label><input type="radio" name="ability_2" value="unique">유니크</label>
-                        <label><input type="radio" name="ability_2" value="legendary">레전드리</label>
+                        <label><input type="radio" name="ability_2" value="해당없음" checked>해당없음</label>
+                        <label><input type="radio" name="ability_2" value="에픽">에픽</label>
+                        <label><input type="radio" name="ability_2" value="유니크">유니크</label>
+                        <label><input type="radio" name="ability_2" value="레전드리">레전드리</label>
                     </div>
                 </div>
             </div>
@@ -108,3 +99,26 @@
     </div>
 </section>
 {%endblock%}
+{% block script %}
+<script>
+    function categoryChange(e) {
+    var part_armor = ["모자", "상의", "하의", "한벌옷", "장갑", "망토", "신발"];
+    var part_accessory = ["얼굴장식", "눈장식", "귀고리", "어깨장식", "반지", "펜던트", "벨트", "포켓아이템"];
+    var part_weapon = ["주무기", "보조무기"];
+    var target = document.getElementById("choose");
+
+    if(e.value == "방어구") var d = part_armor;
+    else if(e.value == "장신구") var d = part_accessory;
+    else if(e.value == "무기") var d = part_weapon;
+
+    target.options.length = 0;
+
+    for (x in d) {
+        var opt = document.createElement("option");
+        opt.value = d[x];
+        opt.innerHTML = d[x];
+        target.appendChild(opt);
+    }
+}
+</script>
+{% endblock %}
