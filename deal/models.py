@@ -5,16 +5,16 @@ from accounts.models import User
 
 class DealItems(models.Model):
     STAR_FORCE_CHOICES = (
-        ('na', '해당없음'),
-        ('under_17', '17성 이하'),
-        ('up_17', '17성 초과'),
+        ('해당없음', '해당없음'),
+        ('17성 이하', '17성 이하'),
+        ('17성 초과', '17성 초과'),
     )
 
     ABILITY_CHOICES = (
-        ('na', '해당없음'),
-        ('epic', '에픽'),
-        ('unique', '유니크'),
-        ('legendary', '레전드리'),
+        ('해당없음', '해당없음'),
+        ('에픽', '에픽'),
+        ('유니크', '유니크'),
+        ('레전드리', '레전드리'),
     )
 
     SERVER_CHOICES = (
@@ -33,21 +33,21 @@ class DealItems(models.Model):
     )
 
     GROUP_CHOICES = (
-        ('warrior', '전사'),
-        ('magician', '마법사'),
-        ('archer', '궁수'),
-        ('thief', '도적'),
-        ('pirate', '해적'),
+        ('전사', '전사'),
+        ('마법사', '마법사'),
+        ('궁수', '궁수'),
+        ('도적', '도적'),
+        ('해적', '해적'),
     )
 
     Armor_CHOICES = (
-        ('cap', '모자'),
-        ('top', '상의'),
-        ('bottom', '하의'),
-        ('dress', '한벌옷'),
-        ('gloves', '장갑'),
-        ('cape', '망토'),
-        ('shoes', '신발'),
+        ('모자', '모자'),
+        ('상의', '상의'),
+        ('하의', '하의'),
+        ('한벌옷', '한벌옷'),
+        ('장갑', '장갑'),
+        ('망토', '망토'),
+        ('신발', '신발'),
     )
 
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)

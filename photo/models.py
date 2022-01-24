@@ -27,7 +27,7 @@ class Photo_post(models.Model):
 class Photo_Image(models.Model):
 
     post = models.ForeignKey(Photo_post, on_delete=models.CASCADE)
-    imgfile = models.ImageField(null=True, upload_to="photo", blank=True)
+    imgfile = models.ImageField(null=False, upload_to="photo", blank=False)
 
     def delete(self, *args, **kargs):
         os.remove(os.path.join(settings.MEDIA_ROOT, self.imgfile.name))
