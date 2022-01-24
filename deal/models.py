@@ -9,6 +9,7 @@ class DealItems(models.Model):
     create_date = models.DateTimeField('등록날짜', auto_now_add=True)
     update_date = models.DateTimeField('갱신날짜', auto_now=True)
     server = models.CharField('서버', max_length=10)
+    category = models.BooleanField('장비/기타', default=True)
     group = models.CharField('직업군', max_length=10)
     kind = models.CharField('종류', max_length=10)
     part = models.CharField('부위', max_length=10)

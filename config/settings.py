@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'photo.apps.PhotoConfig',
     'comment.apps.CommentConfig',
+    'job.apps.JobConfig',
 ]
 
 MIDDLEWARE = [

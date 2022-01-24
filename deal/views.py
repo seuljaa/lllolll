@@ -60,3 +60,19 @@ def deal_detail(request, deal_id):
     return render(request, 'deal/deal_items_detail.html', {'detail':detail})
 
 
+def deal_list_gita(request):
+    page = request.GET.get('page', '1')
+    search_keyword = request.GET.get('search_keyword', '')
+
+    deal_items = DealItems.objects.order_by('-create_date')
+
+    if search_keyword:
+        deal_items = deal_items.filter(
+            Q(subject__icontains=search_keyword)
+        ).distinct()
+
+    paginator = Paginator(deal_items, 10)
+    page_obj = paginator.get_page(page)
+
+    context = {'deal_items': page_obj, 'page': page, 'search_keyword': search_keyword}
+    return render(request, 'deal/deal_gita.html', context)
