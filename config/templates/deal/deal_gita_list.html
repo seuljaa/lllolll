@@ -75,8 +75,8 @@ a{% extends "layout.html" %}
             <td>삽니다</td>
             {% endif %}
             <td>
-                <a href="{% url 'deal:deal_gita_detail' post.id %}" class="t-no-underline t-text-indigo-400">{{
-                    post.subject }}</a>
+                <a href="{% url 'deal:deal_gita_detail' post.id %}" class="t-no-underline t-text-indigo-400">
+                    {{post.subject}}</a>
             </td>
             <td class="t-text-right">
                 {{ post.price|intcomma }}

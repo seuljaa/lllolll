@@ -53,6 +53,18 @@
   margin-bottom: 0.5rem;
 }
 
+.t-mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.t-mr-3 {
+  margin-right: 0.75rem;
+}
+
+.t--mt-1 {
+  margin-top: -0.25rem;
+}
+
 .t-block {
   display: block;
 }

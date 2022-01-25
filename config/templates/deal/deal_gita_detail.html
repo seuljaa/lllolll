@@ -40,6 +40,11 @@
         <div class="t-text-right t-p-2">
             작성자 : {{ detail.user }}
         </div>
+        <div class="t-text-right t-mr-3">
+            <button class="btn btn-sm collapsed btn-outline-warning" type="button">
+                거래완료
+            </button>
+        </div>
         <div class="t-text-left t-ml-3">
             <button id="ss" class="btn btn-sm collapsed btn-outline-success" type="button" data-bs-toggle="collapse"
                     data-bs-target="#demo">
@@ -52,7 +57,7 @@
                             <thead>
                             <tr class="thead-dark">
                                 <th>종류</th>
-                                <th>가격</th>
+                                <th>가격(개당)</th>
                             </tr>
                             </thead>
                             <tbody>
