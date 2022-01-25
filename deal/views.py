@@ -21,7 +21,7 @@ def deal_list(request):
     page = request.GET.get('page', '1')
     search_keyword = request.GET.get('search_keyword', '')
 
-    deal_items = DealItems.objects.order_by('-create_date')
+    deal_items = DealItems.objects.filter(category=True).order_by('-create_date')
 
     if search_keyword:
         deal_items = deal_items.filter(
@@ -42,6 +42,7 @@ def post_Armor(request):
             post = form.save(commit=False)
             post.user_id = request.user.id
             post.subject = request.POST.get('subject')
+            post.category = True
             post.server = request.user.server
             post.group = request.POST.get('group')
             post.kind = request.POST.get('kind')
@@ -60,17 +61,42 @@ def post_Armor(request):
 
     return render(request, 'deal/deal_item_post.html', {'form': form, 'grou_armor':grou_armor})
 
+def post_gita(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user_id = request.user.id
+            post.subject = request.POST.get('subject')
+            post.category = False
+            post.server = request.user.server
+            post.kind = request.POST.get('kind')
+            post.price = request.POST.get('price')
+            post.sale_buy = request.POST.get('sale_buy')
+            post.save()
+            return redirect('deal:deal_gita_list')
+    else:
+        form = PostForm()
+        grou_armor = Group_Armor()
+
+    return render(request, 'deal/deal_gita_post.html', {'form': form, 'grou_armor':grou_armor})
+
 @login_required(login_url='accounts:sign_in')
 def deal_detail(request, deal_id):
     detail = DealItems.objects.get(pk=deal_id)
     return render(request, 'deal/deal_items_detail.html', {'detail':detail})
 
+@login_required(login_url='accounts:sign_in')
+def deal_gita_detail(request, deal_id):
+    detail = DealItems.objects.get(pk=deal_id)
+    return render(request, 'deal/deal_gita_detail.html', {'detail':detail})
 
-def deal_list_gita(request):
+
+def deal_gita_list(request):
     page = request.GET.get('page', '1')
     search_keyword = request.GET.get('search_keyword', '')
 
-    deal_items = DealItems.objects.order_by('-create_date')
+    deal_items = DealItems.objects.filter(category=False).order_by('-create_date')
 
     if search_keyword:
         deal_items = deal_items.filter(
@@ -81,5 +107,5 @@ def deal_list_gita(request):
     page_obj = paginator.get_page(page)
 
     context = {'deal_items': page_obj, 'page': page, 'search_keyword': search_keyword}
-    return render(request, 'deal/deal_gita.html', context)
+    return render(request, 'deal/deal_gita_list.html', context)
 

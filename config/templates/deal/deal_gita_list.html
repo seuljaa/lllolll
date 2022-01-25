@@ -1,5 +1,6 @@
 a{% extends "layout.html" %}
 {% load django_bootstrap5 %}
+{% load humanize %}
 {%block content %}
 
 <div class="container my-3">
@@ -49,12 +50,14 @@ a{% extends "layout.html" %}
             </div>
         </div>
     </div>
+    <p class="t-m-5 t-text-xl"><span style="border: 3px dashed #a10d0d; padding: 0.6em;">기타</span></p>
     <table class="table table-hover t-text-center t-align-middle">
         <thead>
         <tr class="thead-dark">
             <th>번호</th>
             <th>삼/팜</th>
             <th>제목</th>
+            <th>가격</th>
             <th>서버</th>
             <th>닉네임</th>
             <th>등록일</th>
@@ -72,7 +75,15 @@ a{% extends "layout.html" %}
             <td>삽니다</td>
             {% endif %}
             <td>
-                <a href="{% url 'deal:deal_detail' post.id %}" class="t-no-underline t-text-indigo-400">{{ post.subject }}</a>
+                <a href="{% url 'deal:deal_gita_detail' post.id %}" class="t-no-underline t-text-indigo-400">{{ post.subject }}</a>
+            </td>
+            <td class="t-text-right">
+                {{ post.price|intcomma }}
+                {% if post.price_kind == True %}
+                메소
+                {% else %}
+                원
+                {% endif %}
             </td>
             <td>{{ post.server }}</td>
             <td>{{ post.user.username }}</td>
@@ -91,7 +102,7 @@ a{% extends "layout.html" %}
         {% endif %}
         </tbody>
     </table>
-    <form class="d-flex t-justify-center" id="searchForm" method="get" action="{% url 'deal:deal_list' %}">
+    <form class="d-flex t-justify-center" id="searchForm" method="get" action="{% url 'deal:deal_gita_list' %}">
         <input type="hidden" id="search_keyword" name="search_keyword"
                value="{{ search_keyword|default_if_none:'' }}">
         <input type="hidden" id="page" name="page" value="{{ page }}">
@@ -101,7 +112,7 @@ a{% extends "layout.html" %}
         <button class="btn btn-outline-success t-whitespace-nowrap" type="submit">검색</button>
     </form>
     <br>
-    <a class="btn btn-primary" href="{% url 'deal:post_Armor' %}">게시글작성</a>
+    <a class="btn btn-primary" href="{% url 'deal:post_gita' %}">게시글작성</a>
 </div>
 <ul class="pagination justify-content-center t-mt-12">
     <!-- 이전페이지 -->

@@ -1,3 +1,7 @@
+.t-m-5 {
+  margin: 1.25rem;
+}
+
 .t-my-\[0px\] {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -237,6 +241,11 @@
   line-height: 2rem;
 }
 
+.t-text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
 .t-font-bold {
   font-weight: 700;
 }
@@ -254,6 +263,11 @@
 .t-text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.t-text-blue-900 {
+  --tw-text-opacity: 1;
+  color: rgb(30 58 138 / var(--tw-text-opacity));
 }
 
 .t-no-underline {

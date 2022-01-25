@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+{% load django_bootstrap5 %}
+{%block content %}
+<style>
+    input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; -moz-appearance: none; appearance: none; }
+</style>
+<section class="section-prod-detail">
+    <div class="t-mt-[30px]">
+        {% if user.is_authenticated %}
+        <form method="POST">
+            {% csrf_token %}
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        사고팔고
+                    </div>
+                    <div class="card-body">
+                        <select name="sale_buy">
+                            <option value="True" selected="selected">삽니다</option>
+                            <option value="False">팝니다</option>
+                        </select>
+                        <br>
+                        제목 : <input id="subject" name="subject" class="t-w-96" type="text">
+                    </div>
+                </div>
+            </div>
+            {% include "form_errors.html" %}
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        상세정보
+                    </div>
+                    <div class="card-body">
+                        분류
+                        <br>
+                        <select name="kind" id="kind">
+                            <option value="물통">물통</option>
+                            <option value="젬">젬</option>
+                            <option value="캐시">캐시</option>
+                            <option value="기타">기타</option>
+                        </select>
+                        <br>
+                        개당
+                        <input id="price" name="price" class="t-w-40" type="number">
+                        <label><input type="radio" name="price_kind" value="True" checked>메소</label>
+                        <label><input type="radio" name="price_kind" value="False">원</label>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="card">
+                    <div class="card-body">
+                        {% bootstrap_form form %}
+                        {% bootstrap_button button_type="submit" content="등록하기" %}
+                    </div>
+                </div>
+            </div>
+        </form>
+        {% else %}
+        <div class="t-text-gray-400">
+            <a href="{% url 'accounts:sign_in' %}?next={{request.get_full_path}}">로그인</a> 후 이용해주세요.
+        </div>
+        {% endif %}
+        {% if form.errors %}
+        <script>
+                    let $lastForm = $('form').last();
+                    $(window).on('load', function() {
+                        $(window).scrollTop($lastForm.offset().top);
+                    });
+
+        </script>
+        {% endif %}
+    </div>
+    </div>
+</section>
+{%endblock%}
+{% block script %}
+<script>
+window.setTimeout(function() {
+    $(".alert-auto-dismissible").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+}, 4000);
+</script>
+{% endblock %}
