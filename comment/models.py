@@ -2,6 +2,7 @@ from django.db import models
 from accounts.models import User
 from deal.models import DealItems
 from photo.models import Photo_post
+from job.models import Post_job
 
 # Create your models here.
 class Comment(models.Model):
@@ -11,3 +12,4 @@ class Comment(models.Model):
     modify_date = models.DateTimeField(null=True, blank=True, auto_now=True)
     deal_items = models.ForeignKey(DealItems, null=True, blank=True, on_delete=models.CASCADE)
     photo_post = models.ForeignKey(Photo_post, null=True, blank=True, on_delete=models.CASCADE)
+    job_post = models.ForeignKey(Post_job, null=True, blank=True, on_delete=models.CASCADE)

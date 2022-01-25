@@ -42,3 +42,9 @@ def post_job(request):
         form = PostForm()
 
     return render(request, 'job/job_post.html', {'form': form})
+
+
+@login_required(login_url='accounts:sign_in')
+def job_detail(request, post_id):
+    detail = Post_job.objects.get(pk=post_id)
+    return render(request, 'job/job_detail.html', {'detail':detail})

@@ -66,8 +66,8 @@ a{% extends "layout.html" %}
         </tr>
         </thead>
         <tbody>
-        {% if deal_items %}
-        {% for post in deal_items %}
+        {% if job %}
+        {% for post in job %}
         <tr>
             <td>{{ post.id }}</td>
             {% if post.kind == False %}
@@ -76,7 +76,7 @@ a{% extends "layout.html" %}
             <td>구인</td>
             {% endif %}
             <td>
-                <a href="{% url 'deal:deal_gita_detail' post.id %}" class="t-no-underline t-text-indigo-400">{{ post.subject }}</a>
+                <a href="{% url 'job:job_detail' post.id %}" class="t-no-underline t-text-indigo-400">{{ post.subject }}</a>
             </td>
             <td class="t-text-right">
                 {{ post.boss }}
