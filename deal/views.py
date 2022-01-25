@@ -5,9 +5,14 @@ from django.http import HttpResponse
 from django.core.paginator import Paginator
 from .models import DealItems, Group
 from .forms import PostForm, Group_Armor
+from django.contrib import messages
 
 
 # Create your views here.
+
+class Exception(Exception):
+    pass
+
 
 def main(request):
     return render(request, 'main.html')
@@ -52,6 +57,7 @@ def post_Armor(request):
     else:
         form = PostForm()
         grou_armor = Group_Armor()
+
     return render(request, 'deal/deal_item_post.html', {'form': form, 'grou_armor':grou_armor})
 
 @login_required(login_url='accounts:sign_in')
@@ -76,3 +82,4 @@ def deal_list_gita(request):
 
     context = {'deal_items': page_obj, 'page': page, 'search_keyword': search_keyword}
     return render(request, 'deal/deal_gita.html', context)
+

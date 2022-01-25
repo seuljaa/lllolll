@@ -21,6 +21,7 @@
                     </div>
                 </div>
             </div>
+            {% include "form_errors.html" %}
             <div class="container">
                 <div class="card">
                     <div class="card-header">
@@ -120,5 +121,11 @@
         target.appendChild(opt);
     }
 }
+
+window.setTimeout(function() {
+    $(".alert-auto-dismissible").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+}, 4000);
 </script>
 {% endblock %}

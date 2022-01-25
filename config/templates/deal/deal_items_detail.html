@@ -63,8 +63,16 @@
                             <tbody>
                             <tr>
                                 <td>{{ detail.group }}</td>
+                                {% if detail.kind == '선택해주세요.' %}
+                                <td>❌</td>
+                                {% else %}
                                 <td>{{ detail.kind }}</td>
+                                {% endif %}
+                                {% if detail.kind == '선택해주세요.' %}
+                                <td>❌</td>
+                                {% else %}
                                 <td>{{ detail.part }}</td>
+                                {% endif %}
                                 <td>{{ detail.star_force }}</td>
                                 <td>{{ detail.ability_1 }}</td>
                                 <td>{{ detail.ability_2 }}</td>
