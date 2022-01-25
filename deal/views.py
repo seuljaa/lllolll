@@ -20,6 +20,11 @@ def main(request):
 def deal_list(request):
     page = request.GET.get('page', '1')
     search_keyword = request.GET.get('search_keyword', '')
+    filter_group = request.GET.getlist('group')
+    filter_part = request.GET.getlist('part')
+    filter_star_force = request.GET.getlist('star_force')
+    filter_ability_1 = request.GET.getlist('ability_1')
+    filter_ability_2 = request.GET.getlist('ability_2')
 
     deal_items = DealItems.objects.filter(category=True).order_by('-create_date')
 
@@ -27,6 +32,36 @@ def deal_list(request):
         deal_items = deal_items.filter(
             Q(subject__icontains=search_keyword)
         ).distinct()
+
+    if filter_group:
+        query = Q()
+        for i in filter_group:
+            query = query | Q(group__icontains=i)
+            deal_items = deal_items.filter(query)
+
+    if filter_part:
+        query = Q()
+        for i in filter_part:
+            query = query | Q(part__icontains=i)
+            deal_items = deal_items.filter(query)
+
+    if filter_star_force:
+        query = Q()
+        for i in filter_star_force:
+            query = query | Q(star_force__icontains=i)
+            deal_items = deal_items.filter(query)
+
+    if filter_ability_1:
+        query = Q()
+        for i in filter_ability_1:
+            query = query | Q(ability_1__icontains=i)
+            deal_items = deal_items.filter(query)
+
+    if filter_ability_2:
+        query = Q()
+        for i in filter_ability_2:
+            query = query | Q(ability_2__icontains=i)
+            deal_items = deal_items.filter(query)
 
     paginator = Paginator(deal_items, 10)
     page_obj = paginator.get_page(page)

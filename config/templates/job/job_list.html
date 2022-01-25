@@ -13,28 +13,24 @@ a{% extends "layout.html" %}
             <div class="card card-body">
                 <div>
                     보스<br>
-                    <select name="boss">
-                        <option value="스우">스우</option>
-                        <option value="데미안">데미안</option>
-                        <option value="루시드">루시드</option>
-                        <option value="가엔슬">가엔슬</option>
-                        <option value="윌">윌</option>
-                        <option value="더스크">더스크</option>
-                        <option value="진힐라">진힐라</option>
-                        <option value="듄켈">듄켈</option>
-                        <option value="검은마법사">검은마법사</option>
-                        <option value="세렌">세렌</option>
-                        <option value="칼로스">칼로스</option>
-                    </select>
+                    <label><input type="checkbox" name="boss" value="스우">스우</label>
+                    <label><input type="checkbox" name="boss" value="데미안">데미안</label>
+                    <label><input type="checkbox" name="boss" value="루시드">루시드</label>
+                    <label><input type="checkbox" name="boss" value="가엔슬"> 가엔슬</label>
+                    <label><input type="checkbox" name="boss" value="윌"> 윌</label>
+                    <label><input type="checkbox" name="boss" value="더스크"> 더스크</label>
+                    <label><input type="checkbox" name="boss" value="진힐라"> 진힐라</label>
+                    <label><input type="checkbox" name="boss" value="듄켈"> 듄켈</label>
+                    <label><input type="checkbox" name="boss" value="검은마법사"> 검은마법사</label>
+                    <label><input type="checkbox" name="boss" value="세렌"> 세렌</label>
+                    <label><input type="checkbox" name="boss" value="칼로스"> 칼로스</label>
                 </div>
                 <div>
                     난이도<br>
-                    <select name="level">
-                        <option value="이지"> 이지</option>
-                        <option value="노말"> 노말</option>
-                        <option value="하드"> 하드</option>
-                        <option value="카오스"> 카오스</option>
-                    </select>
+                    <label><input type="checkbox" name="level" value="이지"> 이지</label>
+                    <label><input type="checkbox" name="level" value="노말"> 노말</label>
+                    <label><input type="checkbox" name="level" value="하드"> 하드</label>
+                    <label><input type="checkbox" name="level" value="카오스"> 카오스</label>
                 </div>
                 <div>
                     <input type="submit" class="btn btn-primary" value="필터적용">
@@ -161,6 +157,7 @@ $(document).ready(function(){
         $("#searchForm").submit();
     });
 });
+
 
 
 

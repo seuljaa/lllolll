@@ -11,8 +11,8 @@ from .models import Post_job
 def job_list(request):
     page = request.GET.get('page', '1')
     search_keyword = request.GET.get('search_keyword', '')
-    filter_boss = request.GET.get('boss')
-    filter_level = request.GET.get('level')
+    filter_boss = request.GET.getlist('boss')
+    filter_level = request.GET.getlist('level')
 
     post_job_list = Post_job.objects.order_by('-create_date')
 
@@ -21,10 +21,17 @@ def job_list(request):
             Q(subject__icontains=search_keyword)
         ).distinct()
 
-    if filter_boss and filter_level:
-        post_job_list = post_job_list.filter(
-            Q(boss__icontains=filter_boss)&Q(level__icontains=filter_level)
-        ).distinct()
+    if filter_boss:
+        query = Q()
+        for i in filter_boss:
+            query = query | Q(boss__icontains=i)
+            post_job_list = post_job_list.filter(query)
+
+    if filter_level:
+        query = Q()
+        for i in filter_level:
+            query = query | Q(level__icontains=i)
+            post_job_list = post_job_list.filter(query)
 
     paginator = Paginator(post_job_list, 10)
     page_obj = paginator.get_page(page)
