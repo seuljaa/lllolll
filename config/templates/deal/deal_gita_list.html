@@ -9,46 +9,20 @@ a{% extends "layout.html" %}
         📌필터
     </button>
     <div class="collapse" id="demo">
+        <form id="filterForm" method="get" action="{% url 'deal:deal_gita_list' %}">
         <div class="card card-body">
             <div>
-                직업<br>
-                <label><input type="checkbox" name="warrior" value="warrior"> 전사</label>
-                <label><input type="checkbox" name="magician" value="magician"> 법사</label>
-                <label><input type="checkbox" name="archer" value="archer"> 궁수</label>
-                <label><input type="checkbox" name="thief" value="thief"> 도적</label>
-                <label><input type="checkbox" name="pirate" value="pirate"> 해적</label>
-            </div>
-            <div>
                 분류<br>
-                <label><input type="checkbox" name="cap" value="cap"> 모자</label>
-                <label><input type="checkbox" name="top" value="top"> 상의</label>
-                <label><input type="checkbox" name="bottom" value="bottom"> 하의</label>
-                <label><input type="checkbox" name="dress" value="dress"> 한벌옷</label>
-                <label><input type="checkbox" name="gloves" value="gloves"> 장갑</label>
-                <label><input type="checkbox" name="cape" value="cape"> 망토</label>
-                <label><input type="checkbox" name="shoes" value="shoes"> 신발</label>
-            </div>
-            <div>
-                스타포스<br>
-                <label><input type="checkbox" name="under_17" value="under_17"> 17성 이하</label>
-                <label><input type="checkbox" name="up_17" value="up_17"> 17성 초과</label>
-            </div>
-            <div>
-                윗 잠재<br>
-                <label><input type="checkbox" name="epic" value="epic"> 에픽</label>
-                <label><input type="checkbox" name="unique" value="unique"> 유니크</label>
-                <label><input type="checkbox" name="legendary" value="legendary"> 레전드리</label>
-            </div>
-            <div>
-                아랫 잠재<br>
-                <label><input type="checkbox" name="epic" value="epic"> 에픽</label>
-                <label><input type="checkbox" name="unique" value="unique"> 유니크</label>
-                <label><input type="checkbox" name="legendary" value="legendary"> 레전드리</label>
+                <label><input type="checkbox" name="kind" value="물통"> 물통</label>
+                <label><input type="checkbox" name="kind" value="젬"> 젬</label>
+                <label><input type="checkbox" name="kind" value="캐시"> 캐시</label>
+                <label><input type="checkbox" name="kind" value="기타"> 기타</label>
             </div>
             <div>
                 <input type="submit" class="btn btn-primary" value="필터적용">
             </div>
         </div>
+        </form>
     </div>
     <p class="t-m-5 t-text-xl"><span style="border: 3px dashed #a10d0d; padding: 0.6em;">기타</span></p>
     <table class="table table-hover t-text-center t-align-middle">

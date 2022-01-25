@@ -130,6 +130,7 @@ def deal_gita_detail(request, deal_id):
 def deal_gita_list(request):
     page = request.GET.get('page', '1')
     search_keyword = request.GET.get('search_keyword', '')
+    filter_kind = request.GET.getlist('kind')
 
     deal_items = DealItems.objects.filter(category=False).order_by('-create_date')
 
@@ -137,6 +138,12 @@ def deal_gita_list(request):
         deal_items = deal_items.filter(
             Q(subject__icontains=search_keyword)
         ).distinct()
+
+    if filter_kind:
+        query = Q()
+        for i in filter_kind:
+            query = query | Q(kind__icontains=i)
+            deal_items = deal_items.filter(query)
 
     paginator = Paginator(deal_items, 10)
     page_obj = paginator.get_page(page)
