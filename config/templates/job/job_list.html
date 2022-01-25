@@ -50,14 +50,15 @@ a{% extends "layout.html" %}
             </div>
         </div>
     </div>
-    <p class="t-m-5 t-text-xl"><span style="border: 3px dashed #a10d0d; padding: 0.6em;">기타</span></p>
+    <p class="t-m-5 t-text-xl"><span style="border: 3px dashed #a10d0d; padding: 0.6em;">구인구직</span></p>
     <table class="table table-hover t-text-center t-align-middle">
         <thead>
         <tr class="thead-dark">
             <th>번호</th>
-            <th>삼/팜</th>
+            <th>구인/구직</th>
             <th>제목</th>
-            <th>가격</th>
+            <th>보스</th>
+            <th>난이도</th>
             <th>서버</th>
             <th>닉네임</th>
             <th>등록일</th>
@@ -69,26 +70,22 @@ a{% extends "layout.html" %}
         {% for post in deal_items %}
         <tr>
             <td>{{ post.id }}</td>
-            {% if post.sale_buy == 0 %}
-            <td>팝니다</td>
+            {% if post.kind == False %}
+            <td>구직</td>
             {% else %}
-            <td>삽니다</td>
+            <td>구인</td>
             {% endif %}
             <td>
                 <a href="{% url 'deal:deal_gita_detail' post.id %}" class="t-no-underline t-text-indigo-400">{{ post.subject }}</a>
             </td>
             <td class="t-text-right">
-                {{ post.price|intcomma }}
-                {% if post.price_kind == True %}
-                메소
-                {% else %}
-                원
-                {% endif %}
+                {{ post.boss }}
             </td>
+            <td>{{ post.level }}</td>
             <td>{{ post.server }}</td>
             <td>{{ post.user.username }}</td>
             <td>{{ post.create_date }}</td>
-            {% if post.is_complete == 0 %}
+            {% if post.is_complete == False %}
             <td>미완료</td>
             {% else %}
             <td>완료</td>
@@ -96,13 +93,15 @@ a{% extends "layout.html" %}
         </tr>
         {% endfor %}
         {% else %}
-        <tr class="t-text-center">
-            <td colspan="10">게시글이 없습니다.</td>
-        </tr>
+        <div style="opacity:0.7;">
+            <tr class="t-text-center">
+                <td colspan="10">게시글이 없습니다💦</td>
+            </tr>
+        </div>
         {% endif %}
         </tbody>
     </table>
-    <form class="d-flex t-justify-center" id="searchForm" method="get" action="{% url 'deal:deal_gita_list' %}">
+    <form class="d-flex t-justify-center" id="searchForm" method="get" action="{% url 'job:job_list' %}">
         <input type="hidden" id="search_keyword" name="search_keyword"
                value="{{ search_keyword|default_if_none:'' }}">
         <input type="hidden" id="page" name="page" value="{{ page }}">
@@ -112,7 +111,7 @@ a{% extends "layout.html" %}
         <button class="btn btn-outline-success t-whitespace-nowrap" type="submit">검색</button>
     </form>
     <br>
-    <a class="btn btn-primary" href="{% url 'deal:post_gita' %}">게시글작성</a>
+    <a class="btn btn-primary" href="{% url 'job:post_job' %}">게시글작성</a>
 </div>
 <ul class="pagination justify-content-center t-mt-12">
     <!-- 이전페이지 -->

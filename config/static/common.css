@@ -93,6 +93,26 @@
   width: 100%;
 }
 
+.t-w-3 {
+  width: 0.75rem;
+}
+
+.t-w-1 {
+  width: 0.25rem;
+}
+
+.t-w-4 {
+  width: 1rem;
+}
+
+.t-w-28 {
+  width: 7rem;
+}
+
+.t-w-14 {
+  width: 3.5rem;
+}
+
 .t-flex-1 {
   flex: 1 1 0%;
 }

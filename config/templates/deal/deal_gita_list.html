@@ -75,7 +75,8 @@ a{% extends "layout.html" %}
             <td>삽니다</td>
             {% endif %}
             <td>
-                <a href="{% url 'deal:deal_gita_detail' post.id %}" class="t-no-underline t-text-indigo-400">{{ post.subject }}</a>
+                <a href="{% url 'deal:deal_gita_detail' post.id %}" class="t-no-underline t-text-indigo-400">{{
+                    post.subject }}</a>
             </td>
             <td class="t-text-right">
                 {{ post.price|intcomma }}
@@ -96,9 +97,11 @@ a{% extends "layout.html" %}
         </tr>
         {% endfor %}
         {% else %}
-        <tr class="t-text-center">
-            <td colspan="10">게시글이 없습니다.</td>
-        </tr>
+        <div style="opacity:0.7;">
+            <tr class="t-text-center">
+                <td colspan="10">게시글이 없습니다💦</td>
+            </tr>
+        </div>
         {% endif %}
         </tbody>
     </table>
@@ -167,6 +170,7 @@ $(document).ready(function(){
         $("#searchForm").submit();
     });
 });
+
 
 
 

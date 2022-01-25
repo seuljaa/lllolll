@@ -1,0 +1,143 @@
+{% extends "layout.html" %}
+{% load django_bootstrap5 %}
+{%block content %}
+<style>
+#job{
+    width: 200px;
+    height: 25px;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 0;
+    background: #eee;
+    font-size: 17px;
+    transition: all 0.5s;
+}
+
+#subject{
+    height: 25px;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 0;
+    background: #eee;
+    font-size: 17px;
+    transition: all 0.5s;
+}
+
+#subject:hover{
+    background: #ccc;
+}
+
+#subject:focus{
+    outline: none;
+}
+
+#job:hover{
+    background: #ccc;
+}
+
+#job:focus{
+    outline: none;
+}
+
+</style>
+<section class="section-prod-detail">
+    <div class="t-mt-[30px]">
+        {% if user.is_authenticated %}
+        <form method="POST">
+            {% csrf_token %}
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        구인구직
+                    </div>
+                    <div class="card-body">
+                        <select name="kind">
+                            <option value="True" selected="selected">구인</option>
+                            <option value="False">구직</option>
+                        </select>
+                        <br>
+                        제목  <input class="gSearch" type="text" size="40" placeholder="제목을 입력해주세요."
+                               onfocus="this.placeholder=''" onblur="this.placeholder='제목을 입력해주세요.'" id="subject" name="subject" type="text">
+                    </div>
+                </div>
+            </div>
+            {% include "form_errors.html" %}
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        파티정보
+                    </div>
+                    <div class="card-body">
+                        보스
+                        <br>
+                        <select name="boss">
+                            <option value="스우">스우</option>
+                            <option value="데미안">데미안</option>
+                            <option value="루시드">루시드</option>
+                            <option value="가엔슬">가엔슬</option>
+                            <option value="윌">윌</option>
+                            <option value="더스크">더스크</option>
+                            <option value="진힐라">진힐라</option>
+                            <option value="듄켈">듄켈</option>
+                            <option value="검은마법사">검은마법사</option>
+                            <option value="세렌">세렌</option>
+                            <option value="칼로스">칼로스</option>
+                        </select>
+                        <select name="level">
+                            <option value="이지">이지</option>
+                            <option value="노말">노말</option>
+                            <option value="하드">하드</option>
+                            <option value="카오스">카오스</option>
+                        </select><br>
+                        직업<br>
+                        <input class="gSearch" type="text" size="20" placeholder="직업을 입력해주세요."
+                               onfocus="this.placeholder=''" onblur="this.placeholder='직업을 입력해주세요.'" name="job" id="job">
+                        <br>
+                        파티총인원<br>
+                        <input type="number" class="t-w-14"> 명<br>
+
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="card">
+                    <div class="card-body">
+                        {% bootstrap_form form %}
+                        {% bootstrap_button button_type="submit" content="등록하기" %}
+                    </div>
+                </div>
+            </div>
+        </form>
+        {% else %}
+        <div class="t-text-gray-400">
+            <a href="{% url 'accounts:sign_in' %}?next={{request.get_full_path}}">로그인</a> 후 이용해주세요.
+        </div>
+        {% endif %}
+        {% if form.errors %}
+        <script>
+                    let $lastForm = $('form').last();
+                    $(window).on('load', function() {
+                        $(window).scrollTop($lastForm.offset().top);
+                    });
+
+
+
+
+        </script>
+        {% endif %}
+    </div>
+    </div>
+</section>
+{%endblock%}
+{% block script %}
+<script>
+window.setTimeout(function() {
+    $(".alert-auto-dismissible").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+}, 4000);
+
+
+
+</script>
+{% endblock %}
