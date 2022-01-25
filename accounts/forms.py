@@ -16,8 +16,9 @@ class SignupForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'server']
         labels = {
-            'username' : '닉네임',
+            'username' : '메이플 닉네임(본캐)',
             'server' : '서버',
+            'email':'이메일(비밀번호 찾을때 사용)',
         }
 
     def clean_email(self):

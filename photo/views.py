@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
@@ -12,7 +13,6 @@ from django.core.paginator import Paginator
 
 def photo_list(request):
     page = request.GET.get('page', '1')
-
     photo = Photo_post.objects.order_by('-create_date')
     img = []
     for photo_id in photo:
