@@ -14,7 +14,7 @@
                             <div class="card-body">
                                 <div class="container">
                                     {% bootstrap_form form %}
-                                    <input multiple="multiple"  type="file" name="imgfile[]" />
+                                    <input required multiple="multiple" name="imgfile[]" class="form-control t-mb-1" type="file" id="formFile" accept=".gif, .jpg, .jpeg, .png">
                                     {% bootstrap_button button_type="submit" content="등록하기" %}
                                 </div>
                             </div>
