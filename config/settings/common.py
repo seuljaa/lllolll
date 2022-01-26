@@ -15,7 +15,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from django.contrib import messages
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     # 서드파티
     'django_bootstrap5',
-    'debug_toolbar',
     'django_summernote',
     # 로컬
     'deal.apps.DealConfig',
