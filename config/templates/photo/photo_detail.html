@@ -65,9 +65,9 @@
         <a href="{% url 'photo:photo_like' photo_detail.id %}">
             <a href="{% url 'photo:photo_like' photo_detail.id %}" style="text-decoration-line:none;">
                 {% if user in photo_detail.likes_user.all %}
-                💗
+                <i class="fas fa-heart t-text-red-400"></i>
                 {% else %}
-                🤍
+                <i class="far fa-heart t-text-red-400"></i>
                 {% endif %}
             </a>
         </a>
