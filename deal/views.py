@@ -92,9 +92,8 @@ def post_Armor(request):
             return redirect('deal:deal_list')
     else:
         form = PostForm()
-        grou_armor = Group_Armor()
 
-    return render(request, 'deal/deal_item_post.html', {'form': form, 'grou_armor':grou_armor})
+    return render(request, 'deal/deal_item_post.html', {'form': form})
 
 def post_gita(request):
     if request.method == 'POST':
@@ -112,9 +111,8 @@ def post_gita(request):
             return redirect('deal:deal_gita_list')
     else:
         form = PostForm()
-        grou_armor = Group_Armor()
 
-    return render(request, 'deal/deal_gita_post.html', {'form': form, 'grou_armor':grou_armor})
+    return render(request, 'deal/deal_gita_post.html', {'form': form})
 
 @login_required(login_url='accounts:sign_in')
 def deal_detail(request, deal_id):

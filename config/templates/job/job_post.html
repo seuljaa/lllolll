@@ -56,12 +56,11 @@
                             <option value="False">구직</option>
                         </select>
                         <br>
-                        제목  <input class="gSearch" type="text" size="40" placeholder="제목을 입력해주세요."
+                        제목  <input required class="gSearch" type="text" size="40" placeholder="제목을 입력해주세요."
                                onfocus="this.placeholder=''" onblur="this.placeholder='제목을 입력해주세요.'" id="subject" name="subject" type="text">
                     </div>
                 </div>
             </div>
-            {% include "form_errors.html" %}
             <div class="container">
                 <div class="card">
                     <div class="card-header">
@@ -90,11 +89,11 @@
                             <option value="카오스">카오스</option>
                         </select><br>
                         직업<br>
-                        <input class="gSearch" type="text" size="20" placeholder="직업을 입력해주세요."
+                        <input required class="gSearch" type="text" size="20" placeholder="직업을 입력해주세요."
                                onfocus="this.placeholder=''" onblur="this.placeholder='직업을 입력해주세요.'" name="job" id="job">
                         <br>
                         파티총인원<br>
-                        <input type="number" class="t-w-14" name="total"> 명<br>
+                        <input required type="number" class="t-w-14" name="total"> 명<br>
 
                     </div>
                 </div>
