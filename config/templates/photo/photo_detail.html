@@ -6,8 +6,8 @@
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 <style>
     .swiper {
-  width: 400px;
-  height: 400px;
+  width: 320px;
+  height: 320px;
 }
 
     .swiper-button-next ,
@@ -24,43 +24,48 @@
 .swiper-pagination-bullet { width: 12px; height: 12px; background: transparent; border: 1px solid pink; opacity: 1; }
 .swiper-pagination-bullet-active { width: 40px; transition: width .5s; border-radius: 5px; background: pink; border: 1px solid transparent; }
 
+
 </style>
 
 
-<div class="card card-body t-w-1/3 container t-mt-4 t-border-r-0 t-border-l-0 t-font-bold">
-    <div class="t-flex t-justify-between">
-        <div>
-            {{photo_detail.user}}
+<div class="t-flex t-justify-center">
+    <div class="t-w-80 md:t-w-96 t-border-t t-border-b t-border-l-0 t-border-r-0 t-border-gray-300 t-p-4 t-border-solid t-mt-4 t-font-bold t-m-0">
+        <div class="t-flex t-justify-between">
+            <div>
+                {{photo_detail.user}}
+            </div>
+            {% if user.id == photo_detail.user.id %}
+            <div>
+                <a class="t-text-right t-no-underline t-text-indigo-400"
+                   href="{% url 'photo:delete' photo_detail.id %}">삭제</a>
+            </div>
+            {% endif %}
         </div>
-        {% if user.id == photo_detail.user.id %}
-        <div>
-            <a class="t-text-right t-no-underline t-text-indigo-400"
-               href="{% url 'photo:delete' photo_detail.id %}">삭제</a>
-        </div>
-        {% endif %}
     </div>
 </div>
 
 <div class="container t-text-center t-mt-4">
-<div class="swiper">
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper t-text-center">
-        <!-- Slides -->
-        {% for img in photo%}
-        <div class="swiper-slide">
-            <img src="{{ img.imgfile.url }}" style="width: 400px; height: 400px;" alt="">
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper t-text-center">
+            <!-- Slides -->
+            {% for img in photo%}
+            <div class="swiper-slide">
+                <div class="t-w-80 t-h-80 md:t-w-96 t-h-96">
+                    <img src="{{ img.imgfile.url }}" style="width: 100%; height: 100%;" alt="">
+                </div>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+
     </div>
-    <!-- If we need navigation buttons -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-pagination"></div>
 
 </div>
-
-</div>
-<div class="card card-body t-w-1/3 container t-mt-4 t-p-0 t-border-0 t-text-2xl">
+<div style="width:430px; " class=" container t-mt-4 t-p-0 t-border-0 t-text-2xl">
     <div>
         <a href="{% url 'photo:photo_like' photo_detail.id %}">
             <a href="{% url 'photo:photo_like' photo_detail.id %}" style="text-decoration-line:none;">
@@ -73,8 +78,8 @@
         </a>
     </div>
 </div>
-<div class="card card-body t-w-1/3 container t-p-0 t-border-0">좋아요 {{photo_detail.like_count}}개</div>
-<div class="card card-body t-w-1/3 container">
+<div class=" container t-p-0 t-border-0">좋아요 {{photo_detail.like_count}}개</div>
+<div class="container t-border-gray-300 t-p-4 t-border-solid t-rounded t-border">
     <div class="t-font-bold">
         {{photo_detail.user}}
     </div>
@@ -124,6 +129,9 @@
 
   pagination: { el: '.swiper-pagination', type: 'bullets', },
 });
+
+
+
 
 </script>
 
