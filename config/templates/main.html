@@ -3,13 +3,11 @@
 {% load humanize %}
 
 {%block content %}
+<link rel="stylesheet" type="text/css" media="screen" href="cssscreen.css">
+<link rel="stylesheet" type="text/css" media="print" href="cssprint.css">
 <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 <style>
-    .swiper {
-  width: 600px;
-  height: 600px;
-}
 
     .swiper-button-next,
     .swiper-button-prev {
@@ -20,20 +18,23 @@
         text-shadow: -1px 0 blue, 0 1px blue, 1px 0 blue, 0 -1px blue;
     }
 
+
 </style>
 <!-- Slider main container -->
-<div class="swiper">
+<div class="swiper t-w-[100%] lg:t-w-[50%]">
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper t-text-center t-my-3">
         <!-- Slides -->
         <div class="swiper-slide">
-            <img src="/static/메인/대문2.jpg" width="600" height="600">
+            <div>
+                <img src="/static/메인/대문2.jpg" class="t-block t-w-full t-object-cover t-z-0 t-rounded" style="aspect-ratio: 1.5 / 1;">
+            </div>
         </div>
         <div class="swiper-slide">
-            <img src="/static/메인/대문.jpg" width="600" height="600">
+            <img src="/static/메인/대문.jpg" class="t-block t-w-full t-object-cover t-z-0 t-rounded" style="aspect-ratio: 1.5 / 1;">
         </div>
         <div class="swiper-slide">
-            <img src="/static/메인/대문3.jpg" width="600" height="600">
+            <img src="/static/메인/대문3.jpg" class="t-block t-w-full t-object-cover t-z-0 t-rounded" style="aspect-ratio: 1.5 / 1;">
         </div>
     </div>
     <!-- If we need navigation buttons -->
@@ -66,6 +67,7 @@
     prevEl: '.swiper-button-prev',
   },
 });
+
 
 </script>
 

@@ -5,10 +5,6 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 <style>
-    .swiper {
-  width: 320px;
-  height: 320px;
-}
 
     .swiper-button-next ,
     .swiper-button-prev {
@@ -24,12 +20,17 @@
 .swiper-pagination-bullet { width: 12px; height: 12px; background: transparent; border: 1px solid pink; opacity: 1; }
 .swiper-pagination-bullet-active { width: 40px; transition: width .5s; border-radius: 5px; background: pink; border: 1px solid transparent; }
 
+.search_in{display: inline; margin: 4px 0 0 10px;}
+
+.search_in input{width:73%}
+
+
 
 </style>
 
 
 <div class="t-flex t-justify-center">
-    <div class="t-w-80 md:t-w-96 t-border-t t-border-b t-border-l-0 t-border-r-0 t-border-gray-300 t-p-4 t-border-solid t-mt-4 t-font-bold t-m-0">
+    <div class="t-w-[100%] lg:t-w-[45%] t-border-t t-border-b t-border-l-0 t-border-r-0 t-border-gray-300 t-p-4 t-border-solid t-mt-4 t-font-bold t-m-0">
         <div class="t-flex t-justify-between">
             <div>
                 {{photo_detail.user}}
@@ -45,15 +46,13 @@
 </div>
 
 <div class="container t-text-center t-mt-4">
-    <div class="swiper">
+    <div class="swiper t-w-[100%] lg:t-w-[45%]">
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper t-text-center">
             <!-- Slides -->
             {% for img in photo%}
             <div class="swiper-slide">
-                <div class="t-w-80 t-h-80 md:t-w-96 t-h-96">
-                    <img src="{{ img.imgfile.url }}" style="width: 100%; height: 100%;" alt="">
-                </div>
+                <img src="{{ img.imgfile.url }}" style="width: 100%; height: 100%;" alt="">
             </div>
             {% endfor %}
         </div>
@@ -65,7 +64,7 @@
     </div>
 
 </div>
-<div style="width:430px; " class=" container t-mt-4 t-p-0 t-border-0 t-text-2xl">
+<div class=" container t-mt-4 t-p-0 t-border-0 t-text-2xl t-w-[100%] lg:t-w-[45%]">
     <div>
         <a href="{% url 'photo:photo_like' photo_detail.id %}">
             <a href="{% url 'photo:photo_like' photo_detail.id %}" style="text-decoration-line:none;">
@@ -78,8 +77,8 @@
         </a>
     </div>
 </div>
-<div class=" container t-p-0 t-border-0">좋아요 {{photo_detail.like_count}}개</div>
-<div class="container t-border-gray-300 t-p-4 t-border-solid t-rounded t-border">
+<div class="t-w-[100%] lg:t-w-[45%] container t-p-0 t-border-0">좋아요 {{photo_detail.like_count}}개</div>
+<div class="t-w-[100%] lg:t-w-[45%] container t-border-gray-300 t-p-4 t-border-solid t-rounded t-border">
     <div class="t-font-bold">
         {{photo_detail.user}}
     </div>
@@ -87,30 +86,28 @@
         {{photo_detail.content}}
     </div>
     <div class="t-p-3 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0">
-        <div class="t-pb-3">
-            {% if photo_detail.comment_set.count > 0 %}
-            {% for comment in photo_detail.comment_set.all %}
-            <div class="t-flex">
-                <div class="t-font-bold">
-                    {{ comment.user }}&nbsp;&nbsp;
-                </div>
-                {{ comment.content }}<br>
+        {% if photo_detail.comment_set.count > 0 %}
+        {% for comment in photo_detail.comment_set.all %}
+        <div class="t-flex">
+            <div class="t-font-bold">
+                {{ comment.user }}&nbsp;&nbsp;
             </div>
-            {% endfor %}
-            {% else %}
-            <div style="opacity:0.7;">
-                작성된 댓글이 없습니다💦
-            </div>
-            {% endif %}
+            {{ comment.content }}<br>
         </div>
-        <div class="t-pt-3 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0">
-            <form method="POST" action="{% url 'comment:comment_photo' photo_detail.id %}">
-                {% csrf_token %}
-                {{user}}
-                <input type="text" name="comment" id="comment" placeholder="댓글입력..." style="border:none; width:400px; ">
-                <input type="submit" style="border:none; background-color:white; color:skyblue;" value="게시">
-            </form>
+        {% endfor %}
+        {% else %}
+        <div style="opacity:0.7;">
+            작성된 댓글이 없습니다💦
         </div>
+        {% endif %}
+    </div>
+    <div class="t-pt-3 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0">
+        <form method="POST" action="{% url 'comment:comment_photo' photo_detail.id %}">
+            {% csrf_token %}
+
+            <span class="search_in">{{user}} <input required type="text" name="comment" id="comment" placeholder="댓글입력..." style="border:none;"></span>
+            <input type="submit" style="border:none; background-color:white; color:skyblue;" value="게시">
+        </form>
     </div>
 </div>
 
@@ -129,6 +126,10 @@
 
   pagination: { el: '.swiper-pagination', type: 'bullets', },
 });
+
+
+
+
 
 
 

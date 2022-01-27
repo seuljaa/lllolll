@@ -12,12 +12,14 @@ a{% extends "layout.html" %}
         <form id="filterForm" method="get" action="{% url 'deal:deal_gita_list' %}">
         <div class="card card-body">
             <div>
-                분류<br>
+                <p class="t-mb-3 t-text-lg t-font-semibold"><span
+                            style="border: 5px double #D8EFFB; background:#f0f6fa; padding: 0.2em;">분류</span></p>
                 <label><input type="checkbox" name="kind" value="물통"> 물통</label>
                 <label><input type="checkbox" name="kind" value="젬"> 젬</label>
                 <label><input type="checkbox" name="kind" value="캐시"> 캐시</label>
                 <label><input type="checkbox" name="kind" value="기타"> 기타</label>
             </div>
+            <br>
             <div>
                 <input type="submit" class="btn btn-primary" value="필터적용">
             </div>
@@ -28,31 +30,31 @@ a{% extends "layout.html" %}
     <table class="table table-hover t-text-center t-align-middle">
         <thead>
         <tr class="thead-dark">
-            <th>번호</th>
-            <th>삼/팜</th>
+            <th class="t-hidden lg:t-table-cell">번호</th>
+            <th class="t-hidden lg:t-table-cell">삼/팜</th>
             <th>제목</th>
-            <th>가격</th>
-            <th>서버</th>
-            <th>닉네임</th>
-            <th>등록일</th>
-            <th>상태</th>
+            <th class="t-hidden lg:t-table-cell">가격</th>
+            <th class="t-hidden lg:t-table-cell">서버</th>
+            <th class="t-hidden lg:t-table-cell">닉네임</th>
+            <th class="t-hidden lg:t-table-cell">등록일</th>
+            <th class="t-hidden lg:t-table-cell">상태</th>
         </tr>
         </thead>
         <tbody>
         {% if deal_items %}
         {% for post in deal_items %}
         <tr>
-            <td>{{ post.id }}</td>
+            <td class="t-hidden lg:t-table-cell">{{ post.id }}</td>
             {% if post.sale_buy == 0 %}
-            <td>팝니다</td>
+            <td class="t-hidden lg:t-table-cell">팝니다</td>
             {% else %}
-            <td>삽니다</td>
+            <td class="t-hidden lg:t-table-cell">삽니다</td>
             {% endif %}
             <td>
                 <a href="{% url 'deal:deal_gita_detail' post.id %}" class="t-no-underline t-text-indigo-400">
                     {{post.subject}}</a>
             </td>
-            <td class="t-text-right">
+            <td class="t-text-right t-hidden lg:t-table-cell">
                 {{ post.price|intcomma }}
                 {% if post.price_kind == True %}
                 메소
@@ -60,13 +62,13 @@ a{% extends "layout.html" %}
                 원
                 {% endif %}
             </td>
-            <td>{{ post.server }}</td>
-            <td>{{ post.user.username }}</td>
-            <td>{{ post.create_date }}</td>
+            <td class="t-hidden lg:t-table-cell">{{ post.server }}</td>
+            <td class="t-hidden lg:t-table-cell">{{ post.user.username }}</td>
+            <td class="t-hidden lg:t-table-cell">{{ post.create_date }}</td>
             {% if post.is_complete == 0 %}
-            <td>미완료</td>
+            <td class="t-hidden lg:t-table-cell">미완료</td>
             {% else %}
-            <td>완료</td>
+            <td class="t-hidden lg:t-table-cell">완료</td>
             {% endif %}
         </tr>
         {% endfor %}
