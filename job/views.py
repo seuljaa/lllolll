@@ -48,6 +48,7 @@ def post_job(request):
             post = form.save(commit=False)
             post.user_id = request.user.id
             post.subject = request.POST.get('subject')
+            post.kind = request.POST.get('kind')
             post.server = request.user.server
             post.boss = request.POST.get('boss')
             post.level = request.POST.get('level')
