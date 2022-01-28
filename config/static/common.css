@@ -68,12 +68,24 @@
   margin-bottom: 0.25rem;
 }
 
+.t-ml-0 {
+  margin-left: 0px;
+}
+
+.t-mb-1\.5 {
+  margin-bottom: 0.375rem;
+}
+
 .t-block {
   display: block;
 }
 
 .t-flex {
   display: flex;
+}
+
+.t-inline-flex {
+  display: inline-flex;
 }
 
 .t-grid {
@@ -86,6 +98,18 @@
 
 .t-h-36 {
   height: 9rem;
+}
+
+.t-h-80 {
+  height: 20rem;
+}
+
+.t-h-32 {
+  height: 8rem;
+}
+
+.t-h-20 {
+  height: 5rem;
 }
 
 .t-min-h-screen {
@@ -120,6 +144,14 @@
   width: 3.5rem;
 }
 
+.t-w-80 {
+  width: 20rem;
+}
+
+.t-w-auto {
+  width: auto;
+}
+
 .t-flex-1 {
   flex: 1 1 0%;
 }
@@ -128,12 +160,24 @@
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
+.t-flex-row {
+  flex-direction: row;
+}
+
 .t-flex-col {
   flex-direction: column;
 }
 
+.t-content-center {
+  align-content: center;
+}
+
 .t-items-center {
   align-items: center;
+}
+
+.t-justify-start {
+  justify-content: flex-start;
 }
 
 .t-justify-center {
@@ -154,6 +198,14 @@
 
 .t-rounded {
   border-radius: 0.25rem;
+}
+
+.t-rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.t-rounded-md {
+  border-radius: 0.375rem;
 }
 
 .t-border {
@@ -238,6 +290,10 @@
   padding: 0px;
 }
 
+.t-p-1 {
+  padding: 0.25rem;
+}
+
 .t-py-\[20px\] {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -289,6 +345,21 @@
 .t-text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
+}
+
+.t-text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.t-text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.t-text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .t-font-bold {
@@ -385,6 +456,10 @@ html > body {
 }
 
 @media (min-width: 1024px) {
+  .lg\:t-ml-3 {
+    margin-left: 0.75rem;
+  }
+
   .lg\:t-table-cell {
     display: table-cell;
   }
@@ -395,6 +470,28 @@ html > body {
 
   .lg\:t-w-\[45\%\] {
     width: 45%;
+  }
+
+  .lg\:t-w-1\/2 {
+    width: 50%;
+  }
+
+  .lg\:t-p-3 {
+    padding: 0.75rem;
+  }
+
+  .lg\:t-p-10 {
+    padding: 2.5rem;
+  }
+
+  .lg\:t-text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .lg\:t-text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   @media (min-width: 640px) {
