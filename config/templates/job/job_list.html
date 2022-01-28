@@ -48,13 +48,14 @@
         <tr class="thead-dark">
             <th width=50 class="t-hidden lg:t-table-cell">번호</th>
             <th width=100 class="t-hidden lg:t-table-cell">구인/구직</th>
+            <th width=100 class="t-hidden lg:t-table-cell">상태</th>
             <th>제목</th>
             <th width=130 class="t-hidden lg:t-table-cell">보스</th>
             <th width=100 class="t-hidden lg:t-table-cell">난이도</th>
             <th width=120 class="t-hidden lg:t-table-cell">서버</th>
             <th width=120 class="t-hidden lg:t-table-cell">닉네임</th>
             <th width=100 class="t-hidden lg:t-table-cell">등록일</th>
-            <th width=100 class="t-hidden lg:t-table-cell">상태</th>
+
         </tr>
         </thead>
         <tbody>
@@ -66,6 +67,11 @@
             <td class="t-hidden lg:t-table-cell">구직</td>
             {% else %}
             <td class="t-hidden lg:t-table-cell">구인</td>
+            {% endif %}
+            {% if post.is_complete == False %}
+            <td class="t-hidden lg:t-table-cell">미완료</td>
+            {% else %}
+            <td class="t-hidden lg:t-table-cell t-text-red-700">완료</td>
             {% endif %}
             <td>
                 <a href="{% url 'job:job_detail' post.id %}"
@@ -81,11 +87,6 @@
                 {{ post.create_date.year}}.{{ post.create_date.month}}.{{ post.create_date.day}}<br>
                 {{ post.create_date.hour}}:{{ post.create_date.minute}}
             </td>
-            {% if post.is_complete == False %}
-            <td class="t-hidden lg:t-table-cell">미완료</td>
-            {% else %}
-            <td class="t-hidden lg:t-table-cell">완료</td>
-            {% endif %}
         </tr>
         {% endfor %}
         {% else %}

@@ -149,3 +149,8 @@ def deal_gita_list(request):
     context = {'deal_items': page_obj, 'page': page, 'search_keyword': search_keyword}
     return render(request, 'deal/deal_gita_list.html', context)
 
+def deal_complete(request, deal_id):
+    post = DealItems.objects.get(pk=deal_id)
+    post.is_complete = True
+    post.save()
+    return redirect('deal:deal_gita_detail', post.id)

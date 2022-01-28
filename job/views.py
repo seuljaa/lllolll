@@ -66,3 +66,9 @@ def post_job(request):
 def job_detail(request, post_id):
     detail = Post_job.objects.get(pk=post_id)
     return render(request, 'job/job_detail.html', {'detail': detail})
+
+def job_complete(request, post_id):
+    post = Post_job.objects.get(pk=post_id)
+    post.is_complete = True
+    post.save()
+    return redirect('job:job_detail', post.id)

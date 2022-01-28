@@ -41,9 +41,11 @@
             작성자 : {{ detail.user }}
         </div>
         <div class="t-text-right t-mr-3">
-            <button class="btn btn-sm collapsed btn-outline-warning" type="button">
+            {% if detail.is_complete == False %}
+            <a class="btn btn-sm collapsed btn-outline-warning" href="{% url 'deal:deal_complete' detail.id %}" type="button">
                 거래완료
-            </button>
+            </a>
+            {% endif %}
         </div>
         <div class="t-text-left t-ml-3">
             <button id="ss" class="btn btn-sm collapsed btn-outline-success" type="button" data-bs-toggle="collapse"
