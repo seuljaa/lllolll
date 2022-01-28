@@ -47,13 +47,13 @@
         <thead>
         <tr class="thead-dark">
             <th width=50 class="t-hidden lg:t-table-cell">번호</th>
-            <th width=100 class="t-hidden lg:t-table-cell">구인/구직</th>
-            <th width=100 class="t-hidden lg:t-table-cell">상태</th>
+            <th width=90 class="t-hidden lg:t-table-cell">구인/구직</th>
+            <th width=70 class="t-hidden lg:t-table-cell">상태</th>
             <th>제목</th>
-            <th width=130 class="t-hidden lg:t-table-cell">보스</th>
-            <th width=100 class="t-hidden lg:t-table-cell">난이도</th>
-            <th width=120 class="t-hidden lg:t-table-cell">서버</th>
-            <th width=120 class="t-hidden lg:t-table-cell">닉네임</th>
+            <th width=100 class="t-hidden lg:t-table-cell">보스</th>
+            <th width=70 class="t-hidden lg:t-table-cell">난이도</th>
+            <th width=80 class="t-hidden lg:t-table-cell">서버</th>
+            <th width=110 class="t-hidden lg:t-table-cell">닉네임</th>
             <th width=100 class="t-hidden lg:t-table-cell">등록일</th>
 
         </tr>
@@ -75,7 +75,7 @@
             {% endif %}
             <td>
                 <a href="{% url 'job:job_detail' post.id %}"
-                   class="t-no-underline t-text-indigo-400">{{post.subject}}</a>
+                   class="t-no-underline t-text-indigo-400 t-font-bold">{{post.subject}}</a>
             </td>
             <td class="t-hidden lg:t-table-cell">
                 {{ post.boss }}

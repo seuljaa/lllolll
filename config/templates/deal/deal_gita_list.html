@@ -30,14 +30,14 @@
     <table class="table table-hover t-text-center t-align-middle">
         <thead>
         <tr class="thead-dark">
-            <th class="t-hidden lg:t-table-cell">번호</th>
-            <th class="t-hidden lg:t-table-cell">삼/팜</th>
-            <th class="t-hidden lg:t-table-cell">상태</th>
+            <th width=50 class="t-hidden lg:t-table-cell">번호</th>
+            <th width=90 class="t-hidden lg:t-table-cell">삼/팜</th>
+            <th width=70 class="t-hidden lg:t-table-cell">상태</th>
             <th>제목</th>
-            <th class="t-hidden lg:t-table-cell">가격</th>
-            <th class="t-hidden lg:t-table-cell">서버</th>
-            <th class="t-hidden lg:t-table-cell">닉네임</th>
-            <th class="t-hidden lg:t-table-cell">등록일</th>
+            <th width=145 class="t-hidden lg:t-table-cell">가격</th>
+            <th width=80 class="t-hidden lg:t-table-cell">서버</th>
+            <th width=110 class="t-hidden lg:t-table-cell">닉네임</th>
+            <th width=100 class="t-hidden lg:t-table-cell">등록일</th>
         </tr>
         </thead>
         <tbody>
@@ -56,8 +56,7 @@
             <td class="t-hidden lg:t-table-cell t-text-red-700">완료</td>
             {% endif %}
             <td>
-                <a href="{% url 'deal:deal_gita_detail' post.id %}" class="t-no-underline t-text-indigo-400">
-                    {{post.subject}}</a>
+                <a href="{% url 'deal:deal_gita_detail' post.id %}" class="t-no-underline t-text-indigo-400 t-font-bold">                    {{post.subject}}</a>
             </td>
             <td class="t-text-right t-hidden lg:t-table-cell">
                 {{ post.price|intcomma }}
@@ -69,7 +68,10 @@
             </td>
             <td class="t-hidden lg:t-table-cell">{{ post.server }}</td>
             <td class="t-hidden lg:t-table-cell">{{ post.user.username }}</td>
-            <td class="t-hidden lg:t-table-cell">{{ post.create_date }}</td>
+            <td class="t-hidden lg:t-table-cell">
+                {{ post.create_date.year}}.{{ post.create_date.month}}.{{ post.create_date.day}}<br>
+                {{ post.create_date.hour}}:{{ post.create_date.minute}}
+            </td>
         </tr>
         {% endfor %}
         {% else %}
