@@ -2,85 +2,102 @@
 {% load django_bootstrap5 %}
 {% load humanize %}
 {% block content %}
-<div class="container t-text-center t-w-1/2">
-    <div class="t-flex t-justify">
-        <div class="t-text-left">
-            {%if detail.sale_buy == True %}
-            <p class="t-font-bold"><span
-                    style=" border-radius: 15px 15px 0 0; border-bottom: 2px solid #B2E0F7; padding: 1em; background: #D8EFFB;">삽니다</span>
-            </p>
-            {% else %}
-            <p class="t-font-bold"><span
-                    style=" border-radius: 15px 15px 0 0; border-bottom: 2px solid #B2E0F7; padding: 1em; background: #D8EFFB;">팝니다</span>
-            </p>
-            {% endif %}
-        </div>
-        <div class="t-text-left t-ml-1">
-            {%if detail.is_complete == True %}
-            <p class="t-font-bold"><span
-                    style=" border-radius: 15px 15px 0 0; border-bottom: 2px solid #000000; padding: 1em; background: #BFBFBF;">거래완료</span>
-            </p>
-            {% else %}
-            {% if detail.sale_buy == True %}
-            <p class="t-font-bold"><span
-                    style=" border-radius: 15px 15px 0 0; border-bottom: 2px solid #F7B2B2; padding: 1em; background: #FBD8D8;">구매중</span>
-            </p>
-            {% else %}
-            <p class="t-font-bold"><span
-                    style=" border-radius: 15px 15px 0 0; border-bottom: 2px solid #F7B2B2; padding: 1em; background: #FBD8D8;">판매중</span>
-            </p>
-            {% endif %}
-            {% endif %}
+<style>
+
+    .search_in{display: inline; margin: 4px 0 0 10px;}
+
+    .search_in input{width:45%;}
+
+
+
+
+
+
+</style>
+<div class="container t-text-center t-p-0">
+    <div class="t-text-left">
+        <div class="t-w-[100%] lg:t-w-[45%] t-inline-flex t-justify-start">
+            <div>
+                {%if detail.sale_buy == True %}
+                <p class="t-font-bold"><span
+                        style=" border-radius: 15px 15px 0 0; border-bottom: 2px solid #B2E0F7; padding: 1em; background: #D8EFFB;">삽니다</span>
+                </p>
+                {% else %}
+                <p class="t-font-bold"><span
+                        style=" border-radius: 15px 15px 0 0; border-bottom: 2px solid #B2E0F7; padding: 1em; background: #D8EFFB;">팝니다</span>
+                </p>
+                {% endif %}
+            </div>
+            <div class="t-ml-1">
+                {%if detail.is_complete == True %}
+                <p class="t-font-bold"><span
+                        style=" border-radius: 15px 15px 0 0; border-bottom: 2px solid #000000; padding: 1em; background: #BFBFBF;">거래완료</span>
+                </p>
+                {% else %}
+                {% if detail.sale_buy == True %}
+                <p class="t-font-bold"><span
+                        style=" border-radius: 15px 15px 0 0; border-bottom: 2px solid #F7B2B2; padding: 1em; background: #FBD8D8;">구매중</span>
+                </p>
+                {% else %}
+                <p class="t-font-bold"><span
+                        style=" border-radius: 15px 15px 0 0; border-bottom: 2px solid #F7B2B2; padding: 1em; background: #FBD8D8;">판매중</span>
+                </p>
+                {% endif %}
+                {% endif %}
+            </div>
         </div>
     </div>
-    <div class="t-bg-gray-200 t-p-2 t-text-xl">
-            {{ detail.subject }}
-        </div>
+    <div class="t-bg-gray-200 t-p-2 t-text-base lg:t-text-xl">
+        {{ detail.subject }}
+    </div>
     <div class="t-border-solid t-border t-border-gray-300">
         <div class="t-text-right t-p-2">
             작성자 : {{ detail.user }}
         </div>
+        {% if request.user == detail.user %}
         <div class="t-text-right t-mr-3">
             {% if detail.is_complete == False %}
-            <a class="btn btn-sm collapsed btn-outline-warning" href="{% url 'deal:deal_complete' detail.id %}" type="button">
+            <a class="btn btn-sm collapsed btn-outline-warning" href="{% url 'deal:deal_complete' detail.id %}"
+               type="button">
                 거래완료
             </a>
             {% endif %}
         </div>
-        <div class="t-text-left t-ml-3">
+        {% endif %}
+        <div class="t-text-left t-ml-0 t-mb-3 lg:t-ml-3">
             <button id="ss" class="btn btn-sm collapsed btn-outline-success" type="button" data-bs-toggle="collapse"
                     data-bs-target="#demo">
                 📌상세정보
             </button>
             <div class="collapse " id="demo">
-                <div class="t-flex t-justify">
-                    <div class="card card-body t-w-1/2 t-bg-green-50">
-                        <table class="table table-hover t-text-center t-align-middle">
-                            <thead>
-                            <tr class="thead-dark">
-                                <th>종류</th>
-                                <th>가격(개당)</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>{{ detail.kind }}</td>
-                                <td>
-                                    {{ detail.price|intcomma }}
+                <div class="t-flex t-justify t-justify-between t-w-auto lg:t-w-1/2 t-h-20 t-border t-border-solid t-border-gray-300 t-rounded t-mb-1.5">
+                    <div class="t-flex t-justify-between t-p-1 t-text-sm lg:t-text-base lg:t-p-10 t-bg-green-50 t-w-[100%] t-text-center t-items-center t-px-16">
+                        <div class="t-text-center">
+                            <div class="t-font-bold">
+                                종류
+                            </div>
+                            <div class="t-mt-1">
+                                {{ detail.kind }}
+                            </div>
+                        </div>
+                        <div>
+                            <div class="t-font-bold">
+                                가격(개당)
+                            </div>
+                            <div class="t-mt-1">
+                                {{ detail.price|intcomma }}
                                     {% if detail.price_kind == True %}
                                     메소
                                     {% else %}
                                     원
                                     {% endif %}
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="t-p-8 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0 t-mt-3 t-mx-3">
+        <div class="t-p-8 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0 t-mx-3">
             {{ detail.content | safe }}
         </div>
         <div class="t-p-3 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0">
@@ -104,10 +121,9 @@
                 <div class="t-text-left">
                     <form method="POST" action="{% url 'comment:comment_deal' detail.id %}">
                         {% csrf_token %}
-                        {{user}}
-                        <input type="text" name="comment" id="comment" placeholder="댓글입력..."
-                               style="border:none; width:700px; ">
-                        <input type="submit" style="border:none; background-color:white; color:skyblue;" value="게시">
+                        <span class="search_in">{{user}} <input required type="text" name="comment" id="comment"
+                                                                placeholder="댓글입력..." style="border:none;"></span>
+                        <input type="submit" style="border:none; background-color:white; color:skyblue; " value="게시">
                     </form>
                 </div>
             </div>
