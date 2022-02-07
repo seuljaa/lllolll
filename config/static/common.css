@@ -20,6 +20,11 @@
   margin-right: 0.75rem;
 }
 
+.t-my-5 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
 .t-ml-1 {
   margin-left: 0.25rem;
 }
@@ -479,6 +484,16 @@ html > body {
 
   .lg\:t-p-10 {
     padding: 2.5rem;
+  }
+
+  .lg\:t-px-32 {
+    padding-left: 8rem;
+    padding-right: 8rem;
+  }
+
+  .lg\:t-px-52 {
+    padding-left: 13rem;
+    padding-right: 13rem;
   }
 
   .lg\:t-text-xl {
