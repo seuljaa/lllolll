@@ -8,6 +8,11 @@
 
     .search_in input{width:45%;}
 
+.ngx-summernote-view img{
+
+  max-width: 100%;
+
+}
 
 
 
@@ -132,7 +137,9 @@
             </div>
         </div>
         <div class="t-p-8 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0 t-mx-3">
-            {{ detail.content | safe }}
+            <div class="ngx-summernote-view">
+                {{ detail.content | safe }}
+            </div>
         </div>
         <div class="t-p-3 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0">
             <div class="t-pb-3">

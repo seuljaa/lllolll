@@ -20,7 +20,7 @@
                             <option value="False">팝니다</option>
                         </select>
                         <br>
-                        제목 : <input id="subject" name="subject" class="t-w-[80%]" type="text">
+                        제목 : <input required id="subject" name="subject" class="t-w-[80%]" type="text">
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                             <option>선택해주세요.</option>
                         </select>
                         <br>
-                        <input id="price" name="price" class="t-w-40" type="number">
+                        <input required id="price" name="price" class="t-w-40" type="number">
                         <label><input type="radio" name="price_kind" value="True" checked>억</label>
                         <label><input type="radio" name="price_kind" value="False">엄</label>
                         <br>
@@ -130,5 +130,7 @@ window.setTimeout(function() {
         $(this).remove();
     });
 }, 4000);
+
+
 </script>
 {% endblock %}
