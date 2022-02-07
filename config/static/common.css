@@ -140,6 +140,18 @@
   width: 3.5rem;
 }
 
+.t-w-\[80\%\] {
+  width: 80%;
+}
+
+.t-w-36 {
+  width: 9rem;
+}
+
+.t-w-32 {
+  width: 8rem;
+}
+
 .t-flex-1 {
   flex: 1 1 0%;
 }
@@ -307,6 +319,10 @@
 
 .t-align-middle {
   vertical-align: middle;
+}
+
+.t-align-text-top {
+  vertical-align: text-top;
 }
 
 .t-text-3xl {

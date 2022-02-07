@@ -154,7 +154,8 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 SUMMERNOTE_CONFIG = {
-'attachment_filesize_limit': 100 * 1024 * 1024
+'attachment_filesize_limit': 100 * 1024 * 1024,
+'width': '100%',
 }
 
 MESSAGE_TAGS = {
