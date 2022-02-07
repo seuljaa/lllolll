@@ -86,7 +86,7 @@
         <input type="hidden" id="search_keyword" name="search_keyword"
                value="{{ search_keyword|default_if_none:'' }}">
         <input type="hidden" id="page" name="page" value="{{ page }}">
-        <input class="form-control me-2 t-w-3/12 t-items-center" type="search" name="search_keyword"
+        <input class="form-control me-2 t-w-72 lg:t-w-1/2 t-items-center" type="search" name="search_keyword"
                placeholder="검색"
                aria-label="Search" value="{{request.GET.search_keyword}}">
         <button class="btn btn-outline-success t-whitespace-nowrap" type="submit">검색</button>
