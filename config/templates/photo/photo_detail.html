@@ -30,6 +30,7 @@
 
 
 
+
 </style>
 
 
@@ -97,9 +98,7 @@
                 <div style="white-space:nowrap;">
                     <th width=70 class="t-align-text-top">{{ comment.user }}</th>
                 </div>
-                <div style="word-break:break-all;">
-                    <th>{{ comment.content }}</th>
-                </div>
+                <th class="t-font-medium" style="word-break:break-all;">{{ comment.content }}</th>
             </tr>
         </table>
         {% endfor %}
@@ -134,6 +133,7 @@
 
   pagination: { el: '.swiper-pagination', type: 'bullets', },
 });
+
 
 
 

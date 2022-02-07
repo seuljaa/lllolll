@@ -11,6 +11,7 @@
 
 
 
+
 </style>
 <div class="container t-text-center t-p-0">
     <div class="t-text-left">
@@ -21,7 +22,7 @@
                         style=" border-radius: 15px 15px 0 0; border-bottom: 2px solid #B2E0F7; padding: 1em; background: #D8EFFB;">삽니다</span>
                 </p>
                 {% else %}
-                <p class="t-font-bold " ><span
+                <p class="t-font-bold "><span
                         style=" border-radius: 15px 15px 0 0; border-bottom: 2px solid #B2E0F7; padding: 1em; background: #D8EFFB;">팝니다</span>
                 </p>
                 {% endif %}
@@ -137,12 +138,14 @@
             <div class="t-pb-3">
                 {% if detail.comment_set.count > 0 %}
                 {% for comment in detail.comment_set.all %}
-                <div class="t-flex">
-                    <div class="t-font-bold">
-                        {{ comment.user }}&nbsp;&nbsp;
-                    </div>
-                    {{ comment.content }}<br>
-                </div>
+                <table style="table-layout:fixed;">
+                    <tr>
+                        <div style="white-space:nowrap;">
+                            <th width=70 class="t-align-text-top">{{ comment.user }}</th>
+                        </div>
+                        <th class="t-font-medium" style="word-break:break-all;">{{ comment.content }}</th>
+                    </tr>
+                </table>
                 {% endfor %}
                 {% else %}
                 <div style="opacity:0.7;">

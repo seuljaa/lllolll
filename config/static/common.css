@@ -363,6 +363,14 @@
   font-weight: 600;
 }
 
+.t-font-medium {
+  font-weight: 500;
+}
+
+.t-font-normal {
+  font-weight: 400;
+}
+
 .t-text-red-700 {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
