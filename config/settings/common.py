@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'photo.apps.PhotoConfig',
     'comment.apps.CommentConfig',
     'job.apps.JobConfig',
-    'Noti.apps.JobConfig',
+    'noti.apps.NotiConfig',
 
 ]
 
