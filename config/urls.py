@@ -27,6 +27,7 @@ urlpatterns = [
     path('photo/', include('photo.urls')),
     path('comment/', include('comment.urls')),
     path('job/', include('job.urls')),
+    path('noti/', include('noti.urls')),
     path('summernote/', include('django_summernote.urls')),
 ]
 
