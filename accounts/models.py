@@ -1,6 +1,5 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
-from noti.models import Noti_item, Noti
 
 
 class UserManager(BaseUserManager):
@@ -65,10 +64,3 @@ class User(AbstractBaseUser):
 
     def has_perm(self, perm, obj=None):
         return True
-
-    @property
-    def unclarified_noti_count(self):
-        user_id = self.id
-        count = Noti.objects.filter(user_id=user_id, is_clarified=False).count
-
-        return count

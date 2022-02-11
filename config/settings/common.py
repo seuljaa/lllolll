@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import json
 import os
 from pathlib import Path
 
@@ -169,3 +170,15 @@ MESSAGE_TAGS = {
 }
 
 CSRF_TRUSTED_ORIGINS = ['https://goyome.lllolll.me']
+
+secret_file = os.path.join(BASE_DIR, 'secrets.json')
+secrets = json.loads(open(secret_file).read())
+
+# email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_PORT = '587'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'seuljaa940503@gmail.com'
+EMAIL_HOST_PASSWORD = secrets["SECRET_KEY"]
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
