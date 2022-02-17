@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
-
+from noti.models import Noti, Noti_item
 
 class UserManager(BaseUserManager):
     def create_user(self, username, email=None, password=None, **extra_fields):
@@ -64,3 +64,8 @@ class User(AbstractBaseUser):
 
     def has_perm(self, perm, obj=None):
         return True
+
+    @property
+    def unchecked_noti_count(self):
+        noti = Noti.objects.filter(to_user_id=self.id).count()
+        return noti

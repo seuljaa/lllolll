@@ -49,7 +49,14 @@
                         <i class="fas fa-bell t-text-gray-400"></i>&nbsp;알림
                     </div>
                     <li class="nav-item">
-                        <i class="fas fa-bell t-text-gray-400"></i>&nbsp;알림
+                        <div class="t-rounded t-px-0.5 t-w-auto t-bg-red-600 t-text-xs">
+                            {% if user.unchecked_noti_count > 0 and user.unchecked_noti_count <= 99 %}
+                            {{user.unchecked_noti_count}}
+                            {% endif %}
+                            {% if user.unchecked_noti_count > 99 %}
+                            99+
+                            {% endif %}
+                        </div>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
@@ -126,6 +133,10 @@ $(document).ready(function(){
         $("#searchForm").submit();
     });
 });
+
+
+
+
 
 
 
