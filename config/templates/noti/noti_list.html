@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% load django_bootstrap5 %}
+{% load humanize %}
+{% block content %}
+<div class="container my-3">
+    <p class="t-my-5 t-text-xl"><span style="border: 3px dashed #a10d0d; padding: 0.6em;">알림함</span></p>
+    <div class="t-border t-border-solid">
+        {% for noti in noti_list %}
+        {% if noti %}
+        <div class="t-m-3 t-border-solid t-border-b t-border-t-0 t-border-r-0 t-border-l-0">
+            <div class="t-px-1 t-py-0.5 t-inline t-rounded t-bg-red-500 t-w-auto t-text-white">
+                {% if noti.content_type_id == 12 %}
+                댓글
+            </div>
+            <div>
+                ㅇㅇ게시글에 댓글이 달렸습니다.
+            </div>
+                {% endif %}
+        </div>
+        {% else %}
+        <div style="opacity:0.7;">
+            <div class="t-text-center">
+                <span colspan="10">알림이 없습니다💦</span>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{%endblock%}

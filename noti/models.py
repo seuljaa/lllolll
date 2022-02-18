@@ -8,6 +8,7 @@ from django.db import models
 class Noti(models.Model):
     to_user = models.ForeignKey("accounts.User", on_delete=models.DO_NOTHING)
     content_type = models.ForeignKey(ContentType, related_name="content_type_noti", on_delete=models.DO_NOTHING)
+    noti_type = models.ForeignKey(ContentType, related_name="noti_type", on_delete=models.DO_NOTHING)
     object_id = models.PositiveIntegerField('관련 데이터 번호')
     content_object = GenericForeignKey('content_type', 'object_id')
     is_viewed = models.BooleanField('읽음여부', default=False)

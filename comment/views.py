@@ -13,7 +13,7 @@ def comment_photo(request, photo_id):
     if request.method == 'POST':
         comment = Comment(user=request.user, content=request.POST.get('comment'), photo_post=post)
         comment.save()
-        noti = Noti(to_user=post.user, content_type=ContentType.objects.get_for_model(comment), object_id=photo_id)
+        noti = Noti(to_user=post.user, content_type=ContentType.objects.get_for_model(post), noti_type=ContentType.objects.get_for_model(comment), object_id=photo_id)
         noti.save()
         return redirect('photo:photo_detail', photo_id=photo_id)
 
