@@ -7,6 +7,7 @@ from django.db import models
 
 class Noti(models.Model):
     to_user = models.ForeignKey("accounts.User", on_delete=models.DO_NOTHING)
+    create_date = models.DateTimeField('생성날짜', auto_now_add=True)
     content_type = models.ForeignKey(ContentType, related_name="content_type_noti", on_delete=models.DO_NOTHING)
     noti_type = models.ForeignKey(ContentType, related_name="noti_type", on_delete=models.DO_NOTHING)
     object_id = models.PositiveIntegerField('관련 데이터 번호')

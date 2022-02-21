@@ -1,8 +1,11 @@
+from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
+import comment
+from noti.models import Noti
 from .forms import Photo_PostForm
 from .models import Photo_post, Photo_Image
 from django.core.paginator import Paginator
@@ -57,7 +60,6 @@ def photo_like(request, photo_id):
         post.likes_user.remove(user)
         post.like_count -= 1
         post.save()
-
 
     else:
         post.likes_user.add(user)

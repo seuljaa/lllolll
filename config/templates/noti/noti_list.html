@@ -9,13 +9,17 @@
         {% if noti %}
         <div class="t-m-3 t-border-solid t-border-b t-border-t-0 t-border-r-0 t-border-l-0">
             <div class="t-px-1 t-py-0.5 t-inline t-rounded t-bg-red-500 t-w-auto t-text-white">
-                {% if noti.content_type_id == 12 %}
+                {% if noti.noti_type_id == 12%}
                 댓글
-            </div>
-            <div>
-                ㅇㅇ게시글에 댓글이 달렸습니다.
-            </div>
                 {% endif %}
+            </div>
+            {% for photo in photo_list %}
+            {% if photo.id == noti.object_id %}
+            <div>
+                {{ photo.content }}에 댓글이 달렸습니다.
+            </div>
+            {% endif %}
+            {% endfor %}
         </div>
         {% else %}
         <div style="opacity:0.7;">
