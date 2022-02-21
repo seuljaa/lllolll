@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -15,6 +16,7 @@ def noti_reply():
     noti = Noti.objects.all()
     return noti
 
+@login_required(login_url='accounts:sign_in')
 def noti_list(request):
     article_list = []
     photo_content = ContentType.objects.get_for_model(Photo_post)
