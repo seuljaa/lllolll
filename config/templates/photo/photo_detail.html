@@ -31,6 +31,7 @@
 
 
 
+
 </style>
 
 
@@ -41,11 +42,13 @@
                 {{photo_detail.user}}
             </div>
             {% if user.id == photo_detail.user.id %}
-            <div>
-                <a class="t-text-right t-no-underline t-text-indigo-400"
-                   href="{% url 'photo:delete' photo_detail.id %}">삭제</a>
-            </div>
-            {% endif %}
+            <form method="GET" action="{% url 'photo:delete' photo_detail.id %}">
+                {% csrf_token %}
+                <div>
+                    <input type="submit" class="t-text-right t-border-none t-border-0 t-text-indigo-400" onclick="if(!confirm('삭제하시겠습니까?')){return false;}" value="삭제">
+                </div>
+                {% endif %}
+            </form>
         </div>
     </div>
 </div>
@@ -133,21 +136,6 @@
 
   pagination: { el: '.swiper-pagination', type: 'bullets', },
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </script>
 
 </script>

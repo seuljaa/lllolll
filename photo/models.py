@@ -33,3 +33,10 @@ class Photo_Image(models.Model):
     def delete(self, *args, **kargs):
         os.remove(os.path.join(settings.MEDIA_ROOT, self.imgfile.name))
         super(Photo_post, self).delete(*args, **kargs)
+
+class Main_Image(models.Model):
+
+    imgfile = models.ImageField(null=False, upload_to="photo", blank=False)
+
+    def delete(self, *args, **kargs):
+        os.remove(os.path.join(settings.MEDIA_ROOT, self.imgfile.name))
