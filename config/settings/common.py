@@ -88,18 +88,32 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 #한번 이걸 ㅂ ㅏ꿔서 테스트해볼게요
-DATABASES = {
+_DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'lllolll',
         'USER': 'root',
         'PASSWORD': '',
-        'HOST': '172.17.0.1',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
             'charset': 'utf8mb4',
             'use_unicode': True,
+        },
+    }
+}
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'lllolll',
+        'USER': 'seuljalocal',
+        'PASSWORD': '1234',
+        'HOST': '172.17.0.1',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },
     }
 }
