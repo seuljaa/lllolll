@@ -45,7 +45,7 @@
             <form method="GET" action="{% url 'photo:delete' photo_detail.id %}">
                 {% csrf_token %}
                 <div>
-                    <input type="submit" class="t-text-right t-border-none t-border-0 t-text-indigo-400" onclick="if(!confirm('삭제하시겠습니까?')){return false;}" value="삭제">
+                    <input type="submit" class="t-text-right t-border-none t-border-0 t-bg-white t-text-indigo-400" onclick="if(!confirm('삭제하시겠습니까?')){return false;}" value="삭제">
                 </div>
                 {% endif %}
             </form>
