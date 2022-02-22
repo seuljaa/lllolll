@@ -21,6 +21,7 @@ class DealItems(models.Model):
     content = models.TextField()
     sale_buy = models.BooleanField('삼/팜', default=True)
     is_complete = models.BooleanField('완료여부', default=False)
+    ct_id = models.PositiveIntegerField('content_type_id', default=8)
 
 class Group(models.Model):
     STAR_FORCE_CHOICES = (

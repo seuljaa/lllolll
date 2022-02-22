@@ -22,6 +22,9 @@ def comment_deal(request, deal_id):
     if request.method == 'POST':
         comment = Comment(user=request.user, content=request.POST.get('comment'), deal_items=post)
         comment.save()
+        noti = Noti(to_user=post.user, content_type=ContentType.objects.get_for_model(post),
+                    noti_type=ContentType.objects.get_for_model(comment), object_id=deal_id)
+        noti.save()
         return redirect('deal:deal_detail', deal_id=deal_id)
 
 def comment_job(request, job_id):
@@ -29,4 +32,7 @@ def comment_job(request, job_id):
     if request.method == 'POST':
         comment = Comment(user=request.user, content=request.POST.get('comment'), job_post=post)
         comment.save()
+        noti = Noti(to_user=post.user, content_type=ContentType.objects.get_for_model(post),
+                    noti_type=ContentType.objects.get_for_model(comment), object_id=job_id)
+        noti.save()
         return redirect('job:job_detail', post_id=job_id)

@@ -18,6 +18,7 @@ class Photo_post(models.Model):
         blank=True,  # blank is allowed
         related_name='likes_user'
     )
+    ct_id = models.PositiveIntegerField('content_type_id', default=10)
 
     def count_likes_user(self):  # total likes_user
         return self.likes_user.count()

@@ -31,6 +31,7 @@
                             댓글
                             {% endif %}
                         </div>
+                        <!--
                         {% for photo in photo_list %}
                         {% if photo.id == noti.object_id %}
                         <div class="t-pb-3">
@@ -38,6 +39,23 @@
                         </div>
                         {% endif %}
                         {% endfor %}
+                        !-->
+                        {% for article in article_list %}
+                        {% if article.id == noti.object_id and article.ct_id == noti.content_type_id %}
+                        {% if article.subject %}
+                        <div class="">
+                            <a class="t-text-black t-no-underline" href="#">&apos;{{ article.subject }}&apos; 게시글에 댓글이 달렸습니다.</a>
+                        </div>
+                        {% else %}
+                        <div class="">
+                            <a class="t-text-black t-no-underline" href="#">&apos;{{ article.content }}&apos; 게시글에 댓글이 달렸습니다.</a>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                        <div class="t-text-sm t-text-gray-500 t-pb-3">
+                            &#91;{{ noti.create_date.year}}.{{ noti.create_date.month}}.{{ noti.create_date.day}} {{ noti.create_date.hour}}:{{ noti.create_date.minute}}&#93;
+                        </div>
                     </div>
                 {% else %}
                 <div style="opacity:0.7;">

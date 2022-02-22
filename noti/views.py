@@ -16,9 +16,11 @@ def noti_reply():
     noti = Noti.objects.all()
     return noti
 
+
 @login_required(login_url='accounts:sign_in')
 def noti_list(request):
     article_list = []
+
     photo_content = ContentType.objects.get_for_model(Photo_post)
     job_content = ContentType.objects.get_for_model(Post_job)
     deal_content = ContentType.objects.get_for_model(DealItems)
@@ -26,19 +28,39 @@ def noti_list(request):
     photo_noti = Noti.objects.filter(content_type=photo_content, to_user_id=request.user.id, is_viewed=0)
     job_noti = Noti.objects.filter(content_type=job_content, to_user_id=request.user.id, is_viewed=0)
     deal_noti = Noti.objects.filter(content_type=deal_content, to_user_id=request.user.id, is_viewed=0)
-    noti_list = Noti.objects.filter(to_user_id=request.user.id, is_viewed=0)
+    noti_list = Noti.objects.filter(to_user_id=request.user.id, is_viewed=0).order_by('create_date')
+
+    for noti in noti_list :
+        if noti.content_type == photo_content:
+            article = Photo_post.objects.get(pk=noti.object_id)
+            if article not in article_list:
+                article_list.append(Photo_post.objects.get(pk=noti.object_id))
+
+        if noti.content_type == job_content:
+            article = Post_job.objects.get(pk=noti.object_id)
+            if article not in article_list:
+                article_list.append(Post_job.objects.get(pk=noti.object_id))
+
+        if noti.content_type == deal_content:
+            article = DealItems.objects.get(pk=noti.object_id)
+            if article not in article_list:
+                article_list.append(DealItems.objects.get(pk=noti.object_id))
+
+    #return HttpResponse(article_list)
 
     photo_list = Photo_post.objects.filter(user_id=request.user.id)
 
-    for photo in photo_noti:
-        article_list.append(Photo_post.objects.get(pk=photo.object_id))
+    #for photo in photo_noti:
+    #    article = Photo_post.objects.get(pk=photo.object_id)
+    #    if article not in article_list:
+    #        article_list.append(Photo_post.objects.get(pk=photo.object_id))
 
-    for job in job_noti:
-        article_list.append(Post_job.objects.get(pk=job.object_id))
+    #for job in job_noti:
+    #    if article not in article_list:
+    #        article_list.append(Post_job.objects.get(pk=job.object_id))
 
-    for deal in deal_noti:
-        article_list.append(DealItems.objects.get(pk=deal.object_id))
+    #for deal in deal_noti:
+    #    if article not in article_list:
+    #        article_list.append(DealItems.objects.get(pk=deal.object_id))
 
-
-
-    return render(request, 'noti/noti_list.html', {'noti_list':noti_list, 'photo_list':photo_list})
+    return render(request, 'noti/noti_list.html', {'noti_list':noti_list, 'photo_list':photo_list, 'article_list':article_list})
