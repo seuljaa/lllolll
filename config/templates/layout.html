@@ -21,6 +21,8 @@
     <link rel="stylesheet" type="text/css" media="print" href="cssprint.css">
     <script defer src="{% static 'common.js' %}"></script>
 </head>
+<style>
+</style>
 <body class="t-flex t-flex-col t-min-h-screen t-pt-[56px] ">
 {% if messages %}
 {% for message in messages %}
@@ -36,9 +38,9 @@
 
 <header>
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top" style="background: #7E57C2;">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'main' %}">고요미 부엉이🦉</a>
+            <a class="navbar-brand t-text-white" href="{% url 'main' %}" style="hover">고요미 부엉이🦉</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -63,21 +65,23 @@
                     </li>
                     !-->
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'noti:noti_list' %}">
-                            <i class="fas fa-bell"></i> 알림</a>
+                        <a class="nav-link t-text-white" style="color:white;" href="{% url 'noti:noti_list' %}">
+                            <i class="fas fa-bell t-text-white"></i> 알림</a>
                     </li>
                     {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:sign_out' %}"><i class="fas fa-sign-out-alt"></i>
+                    <li class="nav-item ">
+                        <a class="nav-link" style="color:white;" href="{% url 'accounts:sign_out' %}"><i
+                                class="fas fa-sign-out-alt"></i>
                             {{user}}님 로그아웃</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:sign_in' %}"><i
+                        <a class="nav-link t-text-white" style="color:white;" href="{% url 'accounts:sign_in' %}"><i
                                 class="fas fa-sign-in-alt"></i> 로그인</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:sign_up' %}"><i class="fas fa-user-plus"></i>
+                        <a class="nav-link t-text-white" style="color:white;" href="{% url 'accounts:sign_up' %}"><i
+                                class="fas fa-user-plus"></i>
                             회원가입</a>
                     </li>
                     {% endif %}
@@ -87,12 +91,14 @@
     </nav>
 </header>
 <section>
-    <div class="t-text-3xl t-flex t-justify-center t-items-center t-h-36 sm:t-flex sm:t-justify-center sm:t-items-center sm:t-h-72">
-        <div class="sm:t-inline sm:t-text-center sm:t-mt-1 sm:t-text-4xl">
-            고요미 부엉이🦉
+    <div style="background: #FAFAFA;">
+        <div class="t-text-3xl t-flex t-justify-center t-items-center t-h-36 sm:t-flex sm:t-justify-center sm:t-items-center sm:t-h-72">
+            <div class="sm:t-inline sm:t-text-center sm:t-mt-1 sm:t-text-4xl">
+                고요미 부엉이🦉
+            </div>
         </div>
     </div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Tenth navbar example">
+    <nav class="navbar navbar-dark navbar-expand-lg " aria-label="Tenth navbar example" style="background: #7E57C2;">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample08"
                     aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,12 +107,13 @@
 
             <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'main' %}"><i
+                    <li class="nav-item ">
+                        <a class="nav-link active t-text-white" aria-current="page" href="{% url 'main' %}"><i
                                 class="fas fa-home"></i> 홈</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-bs-toggle="dropdown"
+                        <a class="nav-link dropdown-toggle t-text-white" style="color:white;" href="#" id="dropdown08"
+                           data-bs-toggle="dropdown"
                            aria-expanded="false">고요미 사고팔고</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown08">
                             <li><a class="dropdown-item" href="{% url 'deal:deal_list' %}">장비</a></li>
@@ -114,10 +121,12 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'job:job_list' %}">고요미 구인구직</a>
+                        <a class="nav-link t-text-white" style="color:white;" href="{% url 'job:job_list' %}">고요미
+                            구인구직</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'photo:photo_list' %}">고요미 사진첩</a>
+                        <a class="nav-link t-text-white" style="color:white;" href="{% url 'photo:photo_list' %}">고요미
+                            사진첩</a>
                     </li>
                 </ul>
             </div>
@@ -141,6 +150,8 @@ $(document).ready(function(){
         $("#searchForm").submit();
     });
 });
+
+
 
 
 
