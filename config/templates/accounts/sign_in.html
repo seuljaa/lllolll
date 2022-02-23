@@ -2,24 +2,31 @@
 {% load django_bootstrap5 %}
 {% block content %}
 <div class="container my-3" xmlns="http://www.w3.org/1999/html">
-    <form method="post" class="post-form" action="{% url 'accounts:sign_in' %}">
+    <form method="post" class="container t-text-center" action="{% url 'accounts:sign_in' %}">
         {% csrf_token %}
-        <div class="form-group">
+        <div class="t-inline-block t-text-left t-pb-2">
             {% include "form_errors.html" %}
             <label for="username">사용자ID</label>
-            <input type="text" class="form-control" name="username" id="username"
+            <input type="text" class="form-control t-w-72" name="username" id="username"
                    value="{{ form.username.value|default_if_none:'' }}">
         </div>
-        <div class="form-group">
+        <br>
+        <div class="t-inline-block t-text-left t-pb-2">
             <label for="password">비밀번호</label>
-            <input type="password" class="form-control" name="password" id="password"
+            <input type="password" class="form-control t-w-72" name="password" id="password"
                    value="{{ form.password.value|default_if_none:'' }}">
         </div>
-        </br>
-        <button type="submit" class="btn btn-primary">로그인</button>
-        <a href="#" class="btn btn-primary">아이디 찾기</a>
-        <a href="{% url 'accounts:password_reset' %}" class="btn btn-primary">비밀번호 찾기</a><br><br>
-        <a href="{% url 'accounts:sign_up' %}" class="btn btn-primary">회원가입</a>
+        <br>
+        <div class="t-w-72 container t-text-left t-p-0 t-pb-2">
+            <button type="submit" class="btn btn-primary">로그인</button>
+        </div>
+        <div class="t-w-72 container t-text-left t-p-0 t-pb-2">
+            <a href="#" class="btn btn-primary">아이디 찾기</a>
+            <a href="{% url 'accounts:password_reset' %}" class="btn btn-primary">비밀번호 찾기</a>
+        </div>
+        <div class="t-w-72 container t-text-left t-p-0">
+            <a href="{% url 'accounts:sign_up' %}" class="btn btn-primary">회원가입</a>
+        </div>
     </form>
 </div>
 {% endblock %}

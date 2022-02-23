@@ -77,6 +77,10 @@
   display: block;
 }
 
+.t-inline-block {
+  display: inline-block;
+}
+
 .t-inline {
   display: inline;
 }
@@ -139,6 +143,22 @@
 
 .t-w-14 {
   width: 3.5rem;
+}
+
+.t-w-1 {
+  width: 0.25rem;
+}
+
+.t-w-16 {
+  width: 4rem;
+}
+
+.t-w-52 {
+  width: 13rem;
+}
+
+.t-w-96 {
+  width: 24rem;
 }
 
 .t-flex-1 {
@@ -335,6 +355,14 @@
 
 .t-pt-3 {
   padding-top: 0.75rem;
+}
+
+.t-pb-1 {
+  padding-bottom: 0.25rem;
+}
+
+.t-pb-2 {
+  padding-bottom: 0.5rem;
 }
 
 .t-text-left {
