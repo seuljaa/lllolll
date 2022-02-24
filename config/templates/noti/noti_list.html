@@ -2,7 +2,7 @@
 {% load django_bootstrap5 %}
 {% load humanize %}
 {% block content %}
-<div class="container my-3">
+<div class="container lg:t-w-2/3">
     <p class="t-my-5 t-text-xl"><span style="border: 3px dashed #a10d0d; padding: 0.6em;">알림함</span></p>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -23,56 +23,55 @@
         <div class="tab-pane fade show active" id="userinfo" role="tabpanel"
              aria-labelledby="userinfo-tab">
             <div>
-                {% for noti in noti_list %}
-                {% if noti %}
-                    <div class="t-m-3 t-border-solid t-border-b t-border-t-0 t-border-r-0 t-border-l-0 t-border-gray-400">
-                        <div class="t-px-1 t-py-0.5 t-inline t-rounded t-bg-red-500 t-w-auto t-text-white">
-                            {% if noti.noti_type_id == 12%}
-                            댓글
-                            {% endif %}
+                {% if noti_list %}
+                    {% for noti in noti_list %}
+                        <div class="t-m-3 t-border-solid t-border-b t-border-t-0 t-border-r-0 t-border-l-0 t-border-gray-400">
+                            <div class="t-px-1 t-py-0.5 t-inline t-rounded t-bg-red-500 t-w-auto t-text-white">
+                                {% if noti.noti_type_id == 12%}
+                                댓글
+                                {% endif %}
+                            </div>
+                            {% for article in article_list %}
+                                {% if article.id == noti.object_id and article.ct_id == noti.content_type_id %}
+                                    {% if article.subject %}
+                                        <div>
+                                            {% if article.ct_id == 13 %}
+                                                <a class="t-text-black t-no-underline"
+                                                   href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}">&apos;{{ article.subject }}&apos; 게시글에 댓글이 달렸습니다.</a>
+                                            {% elif article.ct_id == 8 and article.category == 1 %}
+                                                <a class="t-text-black t-no-underline"
+                                                   href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}">&apos;{{ article.subject }}&apos; 게시글에 댓글이 달렸습니다.</a>
+                                            {% elif article.ct_id == 8 and article.category == 0 %}
+                                                <a class="t-text-black t-no-underline"
+                                                   href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}">&apos;{{ article.subject }}&apos; 게시글에 댓글이 달렸습니다.</a>
+                                            {% else %}
+                                                <a class="t-text-black t-no-underline"
+                                                   href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}">&apos;{{ article.subject }}&apos; 게시글에 댓글이 달렸습니다.</a>
+                                            {% endif %}
+                                        </div>
+                                    {% else %}
+                                        <div >
+                                            <a class="t-text-black t-no-underline"
+                                               href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}">&apos;{{ article.content }}&apos; 게시글에 댓글이 달렸습니다.</a>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+
+                            <div class="t-text-sm t-text-gray-500 t-pb-3">
+                                &#91;{{ noti.create_date.year}}.{{ noti.create_date.month}}.{{ noti.create_date.day}} {{ noti.create_date.hour}}:{{ noti.create_date.minute}}&#93;
+                            </div>
                         </div>
-                        <!--
-                        {% for photo in photo_list %}
-                        {% if photo.id == noti.object_id %}
-                        <div class="t-pb-3">
-                            <a class="t-text-black t-no-underline" href="#">{{ photo.content }}에 댓글이 달렸습니다.</a>
-                        </div>
-                        {% endif %}
-                        {% endfor %}
-                        !-->
-                        {% for article in article_list %}
-                        {% if article.id == noti.object_id and article.ct_id == noti.content_type_id %}
-                        {% if article.subject %}
-                        <div>
-                            {% if article.ct_id == 13 %}
-                            <a class="t-text-black t-no-underline" href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}" >&apos;{{ article.subject }}&apos; 게시글에 댓글이 달렸습니다.</a>
-                            {% elif article.ct_id == 8 and article.category == 1 %}
-                            <a class="t-text-black t-no-underline" href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}">&apos;{{ article.subject }}&apos; 게시글에 댓글이 달렸습니다.</a>
-                            {% elif article.ct_id == 8 and article.category == 0 %}
-                            <a class="t-text-black t-no-underline" href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}">&apos;{{ article.subject }}&apos; 게시글에 댓글이 달렸습니다.</a>
-                            {% else %}
-                            <a class="t-text-black t-no-underline" href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}">&apos;{{ article.subject }}&apos; 게시글에 댓글이 달렸습니다.</a>
-                            {% endif %}
-                        </div>
-                        {% else %}
-                        <div>
-                            <a class="t-text-black t-no-underline" href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}">&apos;{{ article.content }}&apos; 게시글에 댓글이 달렸습니다.</a>
-                        </div>
-                        {% endif %}
-                        {% endif %}
-                        {% endfor %}
-                        <div class="t-text-sm t-text-gray-500 t-pb-3">
-                            &#91;{{ noti.create_date.year}}.{{ noti.create_date.month}}.{{ noti.create_date.day}} {{ noti.create_date.hour}}:{{ noti.create_date.minute}}&#93;
-                        </div>
-                    </div>
+                    {% endfor %}
                 {% else %}
-                <div style="opacity:0.7;">
-                    <div class="t-text-center">
-                        <span colspan="10">알림이 없습니다💦</span>
-                    </div>
-                </div>
+                        <div style="opacity:0.7;">
+                            <div class="t-text-center t-pt-3">
+                                <span colspan="10">알림이 없습니다💦</span>
+                            </div>
+                        </div>
                 {% endif %}
-                {% endfor %}
+
+
             </div>
         </div>
         <div class="tab-pane fade" id="myreview" role="tabpanel"
