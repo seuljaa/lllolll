@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from comment.models import Comment
 from .models import Noti, Noti_item
@@ -44,3 +44,18 @@ def noti_list(request):
                 article_list.append(DealItems.objects.get(pk=noti.object_id))
 
     return render(request, 'noti/noti_list.html', {'noti_list':noti_list, 'article_list':article_list})
+
+def noti_check(request, article_ct_id, article_id, noti_id):
+    noti = Noti.objects.get(pk=noti_id)
+    noti.is_viewed = 1
+    noti.save()
+    if article_ct_id == 13 :
+        return redirect('job:job_detail', article_id)
+    if article_ct_id == 8 :
+        article = DealItems.objects.get(pk=article_id)
+        if article.category == 1 :
+            return redirect('deal:deal_detail', article_id)
+        else :
+            return redirect('deal:deal_gita_detail', article_id)
+    if article_ct_id == 10 :
+        return redirect('photo:photo_detail', article_id)

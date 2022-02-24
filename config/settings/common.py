@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # 서드파티
     'django_bootstrap5',
     'django_summernote',
+    'django_extensions',
     # 로컬
     'deal.apps.DealConfig',
     'accounts.apps.AccountsConfig',
@@ -49,11 +50,9 @@ INSTALLED_APPS = [
     'comment.apps.CommentConfig',
     'job.apps.JobConfig',
     'noti.apps.NotiConfig',
-
 ]
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -104,7 +103,7 @@ DATABASES = {
     }
 }
 
-#DATABASES = {
+# DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.mysql',
 #        'NAME': 'lllolll',
@@ -119,7 +118,7 @@ DATABASES = {
 #
 #        },
 #    }
-#}
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -203,3 +202,5 @@ EMAIL_HOST_USER = 'seuljaa940503@gmail.com'
 EMAIL_HOST_PASSWORD = secrets["SECRET_KEY"]
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+GRAPH_MODELS = {'all_applications': True, 'group_models': True, }

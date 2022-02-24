@@ -44,19 +44,19 @@
                         {% if article.id == noti.object_id and article.ct_id == noti.content_type_id %}
                         {% if article.subject %}
                         <div>
-                            {% if article.ct_id == 10 %}
-                            <a class="t-text-black t-no-underline" href="{% url 'job:job_detail' article.id %}">&apos;{{ article.subject }}&apos; 게시글에 댓글이 달렸습니다.</a>
+                            {% if article.ct_id == 13 %}
+                            <a class="t-text-black t-no-underline" href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}" >&apos;{{ article.subject }}&apos; 게시글에 댓글이 달렸습니다.</a>
                             {% elif article.ct_id == 8 and article.category == 1 %}
-                            <a class="t-text-black t-no-underline" href="{% url 'deal:deal_detail' article.id %}">&apos;{{ article.subject }}&apos; 게시글에 댓글이 달렸습니다.</a>
+                            <a class="t-text-black t-no-underline" href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}">&apos;{{ article.subject }}&apos; 게시글에 댓글이 달렸습니다.</a>
                             {% elif article.ct_id == 8 and article.category == 0 %}
-                            <a class="t-text-black t-no-underline" href="{% url 'deal:deal_gita_detail' article.id %}">&apos;{{ article.subject }}&apos; 게시글에 댓글이 달렸습니다.</a>
+                            <a class="t-text-black t-no-underline" href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}">&apos;{{ article.subject }}&apos; 게시글에 댓글이 달렸습니다.</a>
                             {% else %}
-                            <a class="t-text-black t-no-underline" href="{% url 'photo:photo_detail' article.id %}">&apos;{{ article.subject }}&apos; 게시글에 댓글이 달렸습니다.</a>
+                            <a class="t-text-black t-no-underline" href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}">&apos;{{ article.subject }}&apos; 게시글에 댓글이 달렸습니다.</a>
                             {% endif %}
                         </div>
                         {% else %}
                         <div>
-                            <a class="t-text-black t-no-underline" href="{% url 'photo:photo_detail' article.id %}">&apos;{{ article.content }}&apos; 게시글에 댓글이 달렸습니다.</a>
+                            <a class="t-text-black t-no-underline" href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}">&apos;{{ article.content }}&apos; 게시글에 댓글이 달렸습니다.</a>
                         </div>
                         {% endif %}
                         {% endif %}
