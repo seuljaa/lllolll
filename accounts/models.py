@@ -67,5 +67,5 @@ class User(AbstractBaseUser):
 
     @property
     def unchecked_noti_count(self):
-        noti = Noti.objects.filter(to_user_id=self.id).count()
+        noti = Noti.objects.filter(to_user_id=self.id, is_viewed=0).count()
         return noti
