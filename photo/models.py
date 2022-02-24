@@ -40,3 +40,15 @@ class Main_Image(models.Model):
 
     def delete(self, *args, **kargs):
         os.remove(os.path.join(settings.MEDIA_ROOT, self.imgfile.name))
+
+class Photo_like(models.Model):
+    post = models.ForeignKey(Photo_post, on_delete=models.CASCADE)
+    like_count = models.PositiveIntegerField(default=0)
+    likes_user = models.ManyToManyField(
+        User,  # this is preferred than just 'User'
+        blank=True,  # blank is allowed
+    )
+    ct_id = models.PositiveIntegerField('content_type_id', default=10)
+
+    def count_likes_user(self):  # total likes_user
+        return self.likes_user.count()

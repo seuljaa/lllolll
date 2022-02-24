@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 import comment
 from noti.models import Noti
 from .forms import Photo_PostForm
-from .models import Photo_post, Photo_Image
+from .models import Photo_post, Photo_Image, Photo_like
 from django.core.paginator import Paginator
 
 
@@ -60,11 +60,13 @@ def photo_like(request, photo_id):
         post.likes_user.remove(user)
         post.like_count -= 1
         post.save()
-
     else:
         post.likes_user.add(user)
         post.like_count += 1
         post.save()
+        noti = Noti(to_user=post.user, content_type=ContentType.objects.get_for_model(post),
+                    noti_type=ContentType.objects.get_for_model(Photo_like), object_id=photo_id)
+        noti.save()
     return redirect('photo:photo_detail', photo_id)
 
 
