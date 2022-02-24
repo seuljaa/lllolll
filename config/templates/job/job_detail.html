@@ -117,10 +117,10 @@
                 </div>
             </div>
         </div>
-        <div class="t-p-8 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0 t-mx-3">
+        <div class="t-p-8 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0 t-mx-3 t-text-center">
             {{ detail.content | safe }}
         </div>
-        <div class="t-p-3 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0">
+        <div class="t-p-3 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0 t-text-center">
             <div class="t-pb-3">
                 {% if detail.comment_set.count > 0 %}
                 {% for comment in detail.comment_set.all %}
