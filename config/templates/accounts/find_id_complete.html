@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% load django_bootstrap5 %}
+{% block content %}
+
+<div class="container t-text-center t-border-solid t-border-gray-300 lg:t-w-2/6 t-border t-rounded-lg t-p-0">
+    <div class="t-rounded-t-lg t-font-semibold t-py-2" style="background: #B2E0F7;">
+        🔎 아이디 찾기 결과
+    </div>
+    {% for id in result %}
+    {% if id == 0 %}
+    <div class="container">
+        <div class="t-text-center t-pt-3 t-pb-2">
+            존재하지 않는 회원입니다.
+        </div>
+    </div>
+    {% endif %}
+    {% if id == 1 %}
+    <div class="container">
+        {% for name in username %}
+        <div class="t-text-center t-pt-3 t-pb-2">
+            회원님의 아이디는 "{{ name }}" 입니다.
+        </div>
+        <div class="t-pb-2 ">
+            <a href="{% url 'accounts:sign_in' %}" class="btn btn-primary">로그인</a>
+            <a href="{% url 'accounts:password_reset' %}" class="btn btn-primary">비밀번호 초기화</a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}

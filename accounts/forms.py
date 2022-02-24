@@ -36,3 +36,8 @@ class SignupForm(UserCreationForm):
             if qs.exists():
                 raise forms.ValidationError("이미 등록된 닉네임 입니다.")
         return username
+
+class FindUser(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['email']

@@ -1,12 +1,14 @@
+from django.db.models import QuerySet
 from django.shortcuts import render, redirect
+from django.urls import reverse
+
 from .forms import SignupForm
 from django.contrib.auth import login as auth_login, login
 from django.contrib import messages
-from django.contrib import admin
 
 # Create your views here.
 from .models import User
-
+from .forms import FindUser
 
 def sign_up(request):
     if request.method == 'POST':
@@ -24,3 +26,25 @@ def sign_up(request):
         form = SignupForm()
     return render(request, 'accounts/signup.html', {'form': form} )
 
+def find_id(request):
+    form = FindUser()
+    return render(request, 'accounts/find_id.html', {'form':form})
+
+def find_id_complete(request):
+    result = []
+    username = []
+    if request.method == 'POST':
+        form = FindUser(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            qs: QuerySet = User.objects.filter(email=email)
+
+            if not qs.exists():
+                result.append(0)
+                return render(request, 'accounts/find_id_complete.html', {'result': result})
+
+            else:
+                user: User = qs.first()
+                result.append(1)
+                username.append(user)
+                return render(request, 'accounts/find_id_complete.html', {'result': result, 'username': username} )
