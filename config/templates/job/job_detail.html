@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 {% load django_bootstrap5 %}
 {% load humanize %}
+
 {% block content %}
 <style>
 
     .search_in{display: inline; margin: 4px 0 0 10px;}
 
     .search_in input{width:45%;}
-
 
 
 
@@ -49,9 +49,12 @@
             </div>
         </div>
     </div>
-    <div class="t-bg-gray-200 t-p-2 t-text-base lg:t-text-xl">
-        {{ detail.subject }}
+    <div class="t-flex t-justify-center t-bg-gray-200 t-p-2 t-text-base lg:t-text-xl">
+        <div>
+            {{ detail.subject }}
+        </div>
     </div>
+
     <div class="t-border-solid t-border t-border-gray-300">
         <div class="t-text-right t-p-2">
             작성자 : {{ detail.user }}
@@ -59,18 +62,19 @@
         {% if request.user == detail.user %}
         <div class="t-text-right t-mr-3">
             {% if detail.is_complete == False %}
-            {% if detail.kind == True %}
-            <a class="btn btn-sm collapsed btn-outline-warning" href="{% url 'job:job_complete' detail.id %}"
-               type="button">
-                구인완료
+            <a class="btn btn-sm collapsed btn-outline-success" href="{% url 'job:job_complete' detail.id %}"
+               type="button" onclick="if(!confirm('완료상태로 변경하시겠습니까?')){return false;}">
+                완료
             </a>
-            {% else %}
             <a class="btn btn-sm collapsed btn-outline-warning" href="{% url 'job:job_complete' detail.id %}"
-               type="button">
-                구직완료
+               type="button" onclick="if(!confirm('완료상태로 변경하시겠습니까?')){return false;}">
+                수정
+            </a>
+            <a class="btn btn-sm collapsed btn-outline-danger" href="{% url 'job:job_complete' detail.id %}"
+               type="button" onclick="if(!confirm('완료상태로 변경하시겠습니까?')){return false;}">
+                삭제
             </a>
         </div>
-        {% endif %}
         {% endif %}
         {% endif %}
         <div class="t-text-left t-ml-0 t-mb-3 lg:t-ml-3">
@@ -117,9 +121,11 @@
                 </div>
             </div>
         </div>
+
         <div class="t-p-8 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0 t-mx-3 t-text-center">
             {{ detail.content | safe }}
         </div>
+
         <div class="t-p-3 t-border-gray-400 t-border-solid t-border-t t-border-r-0 t-border-b-0 t-border-l-0 t-text-center">
             <div class="t-pb-3">
                 {% if detail.comment_set.count > 0 %}
