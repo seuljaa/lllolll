@@ -79,8 +79,8 @@ def delete(request, photo_id):
         messages.error(request, '본인이 게시글만 삭제할수있습니다.')
         return redirect('photo:photo_detail', photo_id)
     else:
-        post.delete()
         for noti in notifications :
             if noti.object_id == post.id :
                 noti.delete()
+        post.delete()
         return redirect('photo:photo_list')
