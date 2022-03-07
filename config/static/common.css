@@ -149,6 +149,14 @@
   width: 3.5rem;
 }
 
+.t-w-3 {
+  width: 0.75rem;
+}
+
+.t-w-4 {
+  width: 1rem;
+}
+
 .t-flex-1 {
   flex: 1 1 0%;
 }
@@ -582,6 +590,14 @@ html > body {
 
   .lg\:t-w-2\/3 {
     width: 66.666667%;
+  }
+
+  .lg\:t-w-3\/5 {
+    width: 60%;
+  }
+
+  .lg\:t-w-2\/4 {
+    width: 50%;
   }
 
   .lg\:t-p-10 {

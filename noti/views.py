@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from comment.models import Comment
 from .models import Noti, Noti_item
-from photo.models import Photo_post
+from photo.models import Photo_post, Photo_Image
 from deal.models import DealItems
 from job.models import Post_job
 
@@ -20,6 +20,7 @@ def noti_reply():
 @login_required(login_url='accounts:sign_in')
 def noti_list(request):
     article_list = []
+    img = []
 
     photo_content = ContentType.objects.get_for_model(Photo_post)
     job_content = ContentType.objects.get_for_model(Post_job)
@@ -32,6 +33,7 @@ def noti_list(request):
             article = Photo_post.objects.get(pk=noti.object_id)
             if article not in article_list:
                 article_list.append(Photo_post.objects.get(pk=noti.object_id))
+                img.append(Photo_Image.objects.filter(post_id=article).first())
 
         if noti.content_type == job_content:
             article = Post_job.objects.get(pk=noti.object_id)
@@ -43,13 +45,13 @@ def noti_list(request):
             if article not in article_list:
                 article_list.append(DealItems.objects.get(pk=noti.object_id))
 
-    return render(request, 'noti/noti_list.html', {'noti_list':noti_list, 'article_list':article_list})
+    return render(request, 'noti/noti_list.html', {'noti_list':noti_list, 'article_list':article_list, 'img':img})
 
 def noti_check(request, article_ct_id, article_id, noti_id):
     noti = Noti.objects.get(pk=noti_id)
     noti.is_viewed = 1
     noti.save()
-    if article_ct_id == 13 :
+    if article_ct_id == 15 :
         return redirect('job:job_detail', article_id)
     if article_ct_id == 8 :
         article = DealItems.objects.get(pk=article_id)
@@ -57,5 +59,13 @@ def noti_check(request, article_ct_id, article_id, noti_id):
             return redirect('deal:deal_detail', article_id)
         else :
             return redirect('deal:deal_gita_detail', article_id)
-    if article_ct_id == 10 :
+    if article_ct_id == 11 :
         return redirect('photo:photo_detail', article_id)
+
+@login_required(login_url='accounts:sign_in')
+def all_check(request):
+    noti_list = Noti.objects.filter(to_user_id=request.user.id, is_viewed=0)
+    for noti in noti_list :
+        noti.is_viewed = 1
+        noti.save()
+    return redirect('noti:noti_list')

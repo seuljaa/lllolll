@@ -2,17 +2,23 @@
 {% load django_bootstrap5 %}
 {% load humanize %}
 {% block content %}
-<div class="container lg:t-w-2/3">
+<div class="container lg:t-w-2/5">
     <p class="t-my-5 t-text-xl"><span style="border: 3px dashed #a10d0d; padding: 0.6em;">알림함</span></p>
+    {% if noti_list %}
     <div>
-        {% if noti_list %}
-        {% for noti in noti_list %}
+        <a class="btn btn-sm collapsed btn-outline-success" href="{% url 'noti:all_check' %}"
+               type="button" onclick="if(!confirm('모두읽음으로 표시하시겠습니까?')){return false;}">
+                모두확인
+        </a>
+    </div>
+    {% for noti in noti_list %}
+    <div>
         <div class="t-m-3 t-border-solid t-border-b t-border-t-0 t-border-r-0 t-border-l-0 t-border-gray-400">
-            {% if noti.noti_type_id == 12 %}
+            {% if noti.noti_type_id == 14 %}
             <div class="t-px-1 t-py-0.5 t-inline t-rounded t-bg-red-500 t-w-auto t-text-white">
                 댓글
             </div>
-            {% elif noti.noti_type_id == 17 %}
+            {% elif noti.noti_type_id == 12 %}
             <div class="t-px-1 t-py-0.5 t-inline t-rounded t-bg-blue-400 t-w-auto t-text-white">
                 좋아요
             </div>
@@ -21,14 +27,17 @@
             {% if article.id == noti.object_id and article.ct_id == noti.content_type_id %}
             {% if article.subject %}
             <div>
-                {% if article.ct_id == 13 %}
+                <!-- 구인구직 게시판 댓글 알림-->
+                {% if article.ct_id == 15 %}
                 <a class="t-text-black t-no-underline"
                    href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}">&apos;{{ article.subject }}&apos;
                     게시글에 댓글이 달렸습니다.</a>
+                <!-- 장비 게시판 댓글 알림-->
                 {% elif article.ct_id == 8 and article.category == 1 %}
                 <a class="t-text-black t-no-underline"
                    href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}">&apos;{{ article.subject }}&apos;
                     게시글에 댓글이 달렸습니다.</a>
+                <!-- 기타 게시판 댓글 알림-->
                 {% elif article.ct_id == 8 and article.category == 0 %}
                 <a class="t-text-black t-no-underline"
                    href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}">&apos;{{ article.subject }}&apos;
@@ -36,19 +45,33 @@
                 {% endif %}
             </div>
             {% else %}
-            {% if article.ct_id == 10 and noti.noti_type_id == 12 %}
-            <div>
-                <a class="t-text-black t-no-underline"
-                   href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}">&apos;{{ article.content }}&apos;
-                    게시글에 댓글이 달렸습니다.</a>
-            </div>
-            {% elif article.ct_id == 10 and noti.noti_type_id == 17 %}
+            <!-- 사진첩 댓글 알림-->
+            {% if article.ct_id == 11 and noti.noti_type_id == 14 %}
+            {% for img_id in img %}
+            {% if img_id.post.id == article.id %}
             <div>
                 <a class="t-text-black t-no-underline"
                    href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}">
+                    <img src="{{ img_id.imgfile.url }}" class=" t-w-14 t-object-cover"
+                             style="aspect-ratio: 1 / 1;" alt="">
+                    사진에 댓글이 달렸습니다.</a>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <!-- 사진첩 좋아요 알림-->
+            {% elif article.ct_id == 11 and noti.noti_type_id == 12 %}
+            {% for img_id in img %}
+            {% if img_id.post.id == article.id %}
+            <div>
+                <a class="t-text-black t-no-underline"
+                   href="{% url 'noti:noti_check' article.ct_id article.id noti.id%}">
+                    <img src="{{ img_id.imgfile.url }}" class=" t-w-14 t-object-cover"
+                             style="aspect-ratio: 1 / 1;" alt="">
                     사진에 좋아요가 달렸습니다.
                 </a>
             </div>
+            {% endif %}
+            {% endfor %}
             {% endif %}
             {% endif %}
             {% endif %}
@@ -61,7 +84,7 @@
         {% else %}
         <div style="opacity:0.7;">
             <div class="t-text-center t-pt-3">
-                <span colspan="10">알림이 없습니다💦</span>
+                <span colspan="10">표시할 알림이 없습니다💦</span>
             </div>
         </div>
         {% endif %}
