@@ -62,6 +62,7 @@ def noti_check(request, article_ct_id, article_id, noti_id):
     if article_ct_id == 11 :
         return redirect('photo:photo_detail', article_id)
 
+
 @login_required(login_url='accounts:sign_in')
 def all_check(request):
     noti_list = Noti.objects.filter(to_user_id=request.user.id, is_viewed=0)
