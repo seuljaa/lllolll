@@ -8,6 +8,7 @@ import comment
 from noti.models import Noti
 from .forms import Photo_PostForm
 from .models import Photo_post, Photo_Image, Photo_like
+from noti.models import Noti
 from django.core.paginator import Paginator
 
 
@@ -73,9 +74,13 @@ def photo_like(request, photo_id):
 @login_required(login_url='accounts:sign_in')
 def delete(request, photo_id):
     post = Photo_post.objects.get(pk=photo_id)
+    notifications = Noti.objects.all()
     if request.user != post.user:
         messages.error(request, '본인이 게시글만 삭제할수있습니다.')
         return redirect('photo:photo_detail', photo_id)
     else:
         post.delete()
+        for noti in notifications :
+            if noti.object_id == post.id :
+                noti.delete()
         return redirect('photo:photo_list')

@@ -169,10 +169,6 @@
   justify-content: flex-start;
 }
 
-.t-justify-end {
-  justify-content: flex-end;
-}
-
 .t-justify-center {
   justify-content: center;
 }
