@@ -13,4 +13,4 @@ class Comment(models.Model):
     deal_items = models.ForeignKey(DealItems, null=True, blank=True, on_delete=models.CASCADE)
     photo_post = models.ForeignKey(Photo_post, null=True, blank=True, on_delete=models.CASCADE)
     job_post = models.ForeignKey(Post_job, null=True, blank=True, on_delete=models.CASCADE)
-    ct_id = models.PositiveIntegerField('content_type_id', default=12)
+    ct_id = models.PositiveIntegerField('content_type_id', default=14)

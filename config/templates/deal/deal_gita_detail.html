@@ -63,11 +63,15 @@
         {% if request.user == detail.user %}
         <div class="t-text-right t-mr-3">
             {% if detail.is_complete == False %}
-            <a class="btn btn-sm collapsed btn-outline-warning" href="{% url 'deal:deal_complete' detail.id %}"
-               type="button">
+            <a class="btn btn-sm collapsed btn-outline-success" href="{% url 'deal:deal_complete' detail.id %}"
+               type="button" onclick="if(!confirm('완료로 변경하시겠습니까?')){return false;}">
                 거래완료
             </a>
             {% endif %}
+            <a class="btn btn-sm collapsed btn-outline-danger" href="{% url 'deal:deal_delete' detail.id %}"
+               type="button" onclick="if(!confirm('정말로 삭제하시겠습니까?')){return false;}">
+                삭제
+            </a>
         </div>
         {% endif %}
         <div class="t-text-left t-ml-0 t-mb-3 lg:t-ml-3">

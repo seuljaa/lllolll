@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -6,6 +7,7 @@ from django.http import HttpResponse
 
 from .forms import PostForm
 from .models import Post_job
+from noti.models import Noti
 
 
 def job_list(request):
@@ -67,8 +69,47 @@ def job_detail(request, post_id):
     detail = Post_job.objects.get(pk=post_id)
     return render(request, 'job/job_detail.html', {'detail': detail})
 
+
 def job_complete(request, post_id):
     post = Post_job.objects.get(pk=post_id)
     post.is_complete = True
     post.save()
     return redirect('job:job_detail', post.id)
+
+
+def job_delete(request, post_id):
+    post = Post_job.objects.get(pk=post_id)
+    notifycations = Noti.objects.filter(object_id=post_id)
+    if request.user == post.user:
+        for noti in notifycations:
+            noti.delete()
+        post.delete()
+    else:
+        messages.error(request, '본인의 게시글만 삭제할수있습니다.')
+        return redirect('job:job_detail', post_id)
+    return redirect('job:job_list')
+
+
+def job_modify(request, post_id):
+    post = Post_job.objects.get(pk=post_id)
+    if request.user != post.user:
+        messages.error(request, '본인의 게시글만 수정할수있습니다.')
+        return redirect('job:job_detail', post_id)
+    else:
+        if request.method == 'POST':
+            form = PostForm(request.POST, instance=post)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.user_id = request.user.id
+                post.subject = request.POST.get('subject')
+                post.kind = request.POST.get('kind')
+                post.server = request.user.server
+                post.boss = request.POST.get('boss')
+                post.level = request.POST.get('level')
+                post.total = request.POST.get('total')
+                post.job = request.POST.get('job')
+                post.save()
+                return redirect('job:job_list')
+        else:
+            form = PostForm(instance=post)
+        return render(request, 'job/job_post.html', {'form': form})

@@ -48,7 +48,7 @@ class Photo_like(models.Model):
         User,  # this is preferred than just 'User'
         blank=True,  # blank is allowed
     )
-    ct_id = models.PositiveIntegerField('content_type_id', default=10)
+    ct_id = models.PositiveIntegerField('content_type_id', default=12)
 
     def count_likes_user(self):  # total likes_user
         return self.likes_user.count()

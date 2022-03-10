@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 from .models import DealItems, Group
+from noti.models import Noti
 from .forms import PostForm, Group_Armor
 from django.contrib import messages
 
@@ -117,13 +118,10 @@ def post_gita(request):
 @login_required(login_url='accounts:sign_in')
 def deal_detail(request, deal_id):
     detail = DealItems.objects.get(pk=deal_id)
-    return render(request, 'deal/deal_items_detail.html', {'detail':detail})
-
-@login_required(login_url='accounts:sign_in')
-def deal_gita_detail(request, deal_id):
-    detail = DealItems.objects.get(pk=deal_id)
-    return render(request, 'deal/deal_gita_detail.html', {'detail':detail})
-
+    if detail.category == 0 :
+        return render(request, 'deal/deal_gita_detail.html', {'detail':detail})
+    else :
+        return render(request, 'deal/deal_items_detail.html', {'detail':detail})
 
 def deal_gita_list(request):
     page = request.GET.get('page', '1')
@@ -153,4 +151,22 @@ def deal_complete(request, deal_id):
     post = DealItems.objects.get(pk=deal_id)
     post.is_complete = True
     post.save()
-    return redirect('deal:deal_gita_detail', post.id)
+    if post.category == 0 :
+        return redirect('deal:deal_gita_detail', post.id)
+    else :
+        return redirect('deal:deal_detail', post.id)
+
+def deal_delete(request, deal_id):
+    post = DealItems.objects.get(pk=deal_id)
+    notifycations = Noti.objects.filter(object_id=deal_id)
+    if request.user == post.user :
+        for noti in notifycations :
+            noti.delete()
+        post.delete()
+    else :
+        messages.error(request, '본인의 게시글만 삭제할수있습니다.')
+        return redirect('deal:deal_detail', deal_id)
+    if post.category == 0 :
+        return redirect('deal:deal_gita_list')
+    else :
+        return redirect('deal:deal_list')

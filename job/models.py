@@ -16,4 +16,4 @@ class Post_job(models.Model):
     content = models.TextField()
     kind = models.BooleanField('구인/구직', default=True)
     is_complete = models.BooleanField('완료여부', default=False)
-    ct_id = models.PositiveIntegerField('content_type_id', default=13)
+    ct_id = models.PositiveIntegerField('content_type_id', default=15)

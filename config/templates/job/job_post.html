@@ -55,9 +55,7 @@
                             <option value="True" selected="selected">구인</option>
                             <option value="False">구직</option>
                         </select>
-                        <br>
-                        제목  <input required class="gSearch t-w-[80%]" type="text" size="40" placeholder="제목을 입력해주세요."
-                               onfocus="this.placeholder=''" onblur="this.placeholder='제목을 입력해주세요.'" id="subject" name="subject" type="text" >
+                        {{form.subject}}
                     </div>
                 </div>
             </div>
@@ -84,7 +82,7 @@
                         </select>
                         <select name="level">
                             <option value="이지">이지</option>
-                            <option value="ㅋ노말">노말</option>
+                            <option value="노말">노말</option>
                             <option value="하드">하드</option>
                             <option value="카오스">카오스</option>
                         </select><br>
@@ -101,7 +99,7 @@
             <div class="container">
                 <div class="card">
                     <div class="card-body">
-                        {% bootstrap_form form %}
+                        {{form.content}}
                         {% bootstrap_button button_type="submit" content="등록하기" %}
                     </div>
                 </div>
