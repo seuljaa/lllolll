@@ -11,7 +11,7 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
         user.set_password(password)
-        user.is_active = False
+        user.is_active = True
         user.save()
         return user
 
@@ -51,7 +51,7 @@ class User(AbstractBaseUser):
     server = models.CharField(max_length=9, choices=SERVER_CHOICES)
     is_staff = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True)
 
